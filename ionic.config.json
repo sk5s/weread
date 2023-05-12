@@ -1,0 +1,7 @@
+{
+  "name": "weread",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
