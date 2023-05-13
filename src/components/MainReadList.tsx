@@ -12,7 +12,9 @@ export default function MainReadList() {
   let readData:any[] = []
   const checkData = async () => {
     const { value } = await Preferences.get({ key:  key.read});
-    if (value === null) return;
+    if (value === null) {
+      setReadDataList([]);
+    return;}
     if (value) {
       readData = JSON.parse(value);
     }
