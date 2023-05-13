@@ -5,7 +5,7 @@ export default function Childpage({ children, title }) {
   const {t} = useTranslation()
   return (
     <>
-      <IonPage id="main">
+      <IonPage>
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="start">

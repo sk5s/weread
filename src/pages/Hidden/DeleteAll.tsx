@@ -5,7 +5,7 @@ import GeneralPage from "../Layout/GeneralPage";
 export default function DeleteAll() {
   const {t} = useTranslation()
   return (
-    <GeneralPage title={t("app.name")}>
+    <GeneralPage title={t("pages.detail.title")} menuId="menu-delete">
       <DeleteAllData />
     </GeneralPage>
   )

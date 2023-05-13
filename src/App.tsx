@@ -26,6 +26,7 @@ import './theme/variables.css';
 
 import Detail from './pages/Detail/Detail';
 import { App as NativeApp } from "@capacitor/app";
+import MainMenu from './components/Menu/MainMenu';
 
 setupIonicReact();
 
@@ -39,7 +40,8 @@ function App() {
   return (
     <IonApp>
       <IonReactRouter>
-        <IonRouterOutlet>
+        <MainMenu menuId="menu-main" />
+        <IonRouterOutlet id='menu-main'>
           <Route exact path="/home">
             <Home />
           </Route>

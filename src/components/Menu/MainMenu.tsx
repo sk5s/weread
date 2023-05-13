@@ -11,7 +11,7 @@ interface AppPage {
   title: string;
 }
 
-export default function MainMenu() {
+export default function MainMenu({menuId}:{menuId: string;}) {
   const {t} = useTranslation()
   const appPages: AppPage[] = [
     {
@@ -35,14 +35,14 @@ export default function MainMenu() {
   ];
   const location = useLocation();
   return (
-    <IonMenu contentId="main" type="overlay">
+    <IonMenu contentId={menuId} type="overlay">
       <IonContent>
-        <IonList id="inbox-list">
+        <IonList>
           <IonListHeader>{t("app.name")}</IonListHeader>
           {/* <IonNote>hi@ionicframework.com</IonNote> */}
           {appPages.map((appPage, index) => {
             return (
-              <IonMenuToggle key={index} autoHide={false}>
+              <IonMenuToggle key={index} autoHide={true}>
                 <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
                   <IonIcon aria-hidden="true" slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
                   <IonLabel>{appPage.title}</IonLabel>

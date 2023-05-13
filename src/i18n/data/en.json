@@ -24,6 +24,7 @@
   },
   "pages": {
     "add": {
+      "title": "Add article",
       "label": {
         "inputUrl": "Input Url",
         "getButton": "Get web data",
@@ -32,6 +33,7 @@
       }
     },
     "detail": {
+      "title": "Delete all data",
       "confirm": {
         "title": "Open?"
       }

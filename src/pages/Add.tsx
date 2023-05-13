@@ -109,7 +109,7 @@ function Add() {
     setInputUrl("")
   }
   return (
-    <GeneralPage title={t("app.name")}>
+    <GeneralPage title={t("pages.add.title")} menuId="menu-add">
       <IonGrid>
         <IonRow>
           <IonCol>

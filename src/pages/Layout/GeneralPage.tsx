@@ -1,11 +1,9 @@
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from "@ionic/react";
-import MainMenu from "../../components/Menu/MainMenu";
 
-export default function GeneralPage({ children, title }) {
+export default function GeneralPage({ children, title, menuId }) {
   return (
     <>
-      <MainMenu />
-      <IonPage id="main">
+      <IonPage id={menuId}>
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="start">

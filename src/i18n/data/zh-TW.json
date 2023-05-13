@@ -24,6 +24,7 @@
   },
   "pages": {
     "add": {
+      "title": "新增文章",
       "label": {
         "inputUrl": "輸入網址",
         "getButton": "讀取網頁資料",
@@ -32,6 +33,7 @@
       }
     },
     "detail": {
+      "title": "刪除所有資料",
       "confirm": {
         "title": "確定開啟？"
       }
