@@ -1,25 +1,14 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import './Home.css';
+import { useTranslation } from 'react-i18next';
+import MainReadList from '../components/MainReadList';
+import GeneralPage from './Layout/GeneralPage';
 
-const Home: React.FC = () => {
+function Home() {
+  const {t} = useTranslation()
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Blank</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer />
-      </IonContent>
-    </IonPage>
+    <GeneralPage title={t("app.name")}>
+      <MainReadList />
+    </GeneralPage>
   );
-};
+}
 
 export default Home;

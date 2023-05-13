@@ -1,0 +1,39 @@
+{
+  "app": {
+    "name": "Weread",
+    "versionStr": "App version: {{versionName}}",
+    "navigate": {
+      "back": "Back"
+    },
+    "confirm": {
+      "yes": "Confirm",
+      "cancel": "Cancel"
+    }
+  },
+  "data": {
+    "noData": "No Data",
+    "loading": "Loading",
+    "edit": {
+      "deleteAll": "Delete all"
+    }
+  },
+  "menu": {
+    "home": "Home",
+    "add": "Add"
+  },
+  "pages": {
+    "add": {
+      "label": {
+        "inputUrl": "Input Url",
+        "getButton": "Get web data",
+        "addButton": "Add",
+        "clearButton": "Clear"
+      }
+    },
+    "detail": {
+      "confirm": {
+        "title": "Open?"
+      }
+    }
+  }
+}
