@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import key from "../lib/storage.json"
 import { Preferences } from "@capacitor/preferences";
 import { Directory, Filesystem } from "@capacitor/filesystem";
+import { trigger } from "../lib/Event";
 
 export default function DeleteAllData() {
   const {t} = useTranslation()
@@ -21,6 +22,7 @@ export default function DeleteAllData() {
       })
     })
     await Preferences.remove({ key: key.read });
+    trigger("weread:listChange")
   };
   return (
     <IonButton onClick={() => removeAll()}>{t("data.edit.deleteAll")}</IonButton>

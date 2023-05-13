@@ -8,6 +8,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import Childpage from "../Layout/ChildPage"
 import { IonButton, IonIcon, useIonAlert } from "@ionic/react"
 import { globeSharp } from "ionicons/icons"
+import "./Detail.css"
 
 export default function Detail() {
   const params = useParams<any>()
@@ -39,8 +40,11 @@ export default function Detail() {
       });
       console.log('secrets:', contents);
       setFileData(JSON.parse(contents.data))
-      const safeHtml = DOMPurify.sanitize(JSON.parse(contents.data).content);
-      const doc = new DOMParser().parseFromString(safeHtml, 'text/html');
+      let doc = new DOMParser().parseFromString(JSON.parse(contents.data).content, 'text/html');
+      Array.from(doc.getElementsByTagName("a")).forEach((e) => {
+        e.relList.add("noopener","noreferrer")
+      })
+      const safeHtml = DOMPurify.sanitize(doc.documentElement.innerHTML);
       setHtml(safeHtml)
     }
   }
@@ -54,7 +58,7 @@ export default function Detail() {
     <Childpage title={readDataList.title}>
       {params.articleId
       ? <>
-      <h1>{fileData.title}</h1>
+      <h1 style={{fontWeight: "bold"}}>{fileData.title}</h1>
       <div style={{width: "100%", display: "flex", justifyContent: "right"}}>
         <IonButton fill="clear" size="small" onClick={() => {
           presentAlert({
@@ -83,7 +87,7 @@ export default function Detail() {
       </>
       : <></>
       }
-      <div key={params.articleId} dangerouslySetInnerHTML={{__html: html}} />
+      <div className="html" key={params.articleId} dangerouslySetInnerHTML={{__html: html}} />
     </Childpage>
   )
 }
