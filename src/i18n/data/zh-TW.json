@@ -19,7 +19,8 @@
   },
   "menu": {
     "home": "首頁",
-    "add": "新增"
+    "add": "新增",
+    "delete": "刪除"
   },
   "pages": {
     "add": {

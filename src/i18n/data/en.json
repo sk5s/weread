@@ -19,7 +19,8 @@
   },
   "menu": {
     "home": "Home",
-    "add": "Add"
+    "add": "Add",
+    "delete": "Delete"
   },
   "pages": {
     "add": {

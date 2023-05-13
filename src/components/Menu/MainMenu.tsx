@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
-import { homeSharp, addSharp } from 'ionicons/icons';
+import { homeSharp, addSharp, trashSharp } from 'ionicons/icons';
 import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote } from '@ionic/react';
 import "./MainMenu.css"
 
@@ -25,6 +25,12 @@ export default function MainMenu() {
       url: '/add',
       iosIcon: addSharp,
       mdIcon: addSharp
+    },
+    {
+      title: t("menu.delete"),
+      url: '/delete',
+      iosIcon: trashSharp,
+      mdIcon: trashSharp
     }
   ];
   const location = useLocation();

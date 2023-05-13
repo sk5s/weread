@@ -15,8 +15,6 @@ export default function MainReadList() {
     if (value === null) return;
     if (value) {
       readData = JSON.parse(value);
-    } else {
-      readData = [];
     }
     setReadDataList(readData.reverse())
   };
