@@ -1,0 +1,11 @@
+#readin {
+  position: absolute;
+  height: 100%;
+  overflow-x: scroll;
+  column-gap: 10px;
+  padding: 5px;
+  touch-action: none;
+}
+#readin::-webkit-scrollbar {
+  display: none;
+}

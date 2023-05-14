@@ -9,7 +9,7 @@ import Childpage from "../Layout/ChildPage"
 import "./Detail.css"
 import UrlOpenConfirm from "../../components/Button/UrlOpenConfirm"
 import { IonButton, IonIcon } from "@ionic/react"
-import { pencilSharp } from "ionicons/icons"
+import { pencilSharp, bookSharp } from "ionicons/icons"
 
 export default function Detail() {
   const params = useParams<any>()
@@ -62,7 +62,11 @@ export default function Detail() {
       <h1 style={{fontWeight: "bold"}}>{fileData.title}</h1>
       <div style={{width: "100%", display: "flex", justifyContent: "right"}}>
         <IonButton fill="clear" onClick={() => {
-          console.log("/edit/"+params.articleId)
+          history.push("/detailpages/"+params.articleId)
+        }}>
+          <IonIcon slot="icon-only" icon={bookSharp}></IonIcon>
+        </IonButton>
+        <IonButton fill="clear" onClick={() => {
           history.push("/edit/"+params.articleId)
         }}>
           <IonIcon slot="icon-only" icon={pencilSharp}></IonIcon>
