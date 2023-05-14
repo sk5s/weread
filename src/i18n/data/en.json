@@ -14,7 +14,8 @@
     "noData": "No Data",
     "loading": "Loading",
     "edit": {
-      "deleteAll": "Delete all"
+      "deleteAll": "Delete all",
+      "deleteArticle": "Delete article"
     }
   },
   "menu": {

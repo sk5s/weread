@@ -27,6 +27,7 @@ import './theme/variables.css';
 import Detail from './pages/Detail/Detail';
 import { App as NativeApp } from "@capacitor/app";
 import MainMenu from './components/Menu/MainMenu';
+import Edit from './pages/Detail/Edit';
 
 setupIonicReact();
 
@@ -52,6 +53,7 @@ function App() {
             <DeleteAll />
           </Route>
           <Route path="/detail/:articleId" component={Detail} />
+          <Route path="/edit/:articleId" component={Edit} />
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>

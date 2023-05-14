@@ -1,9 +1,9 @@
 import { IonButton } from "@ionic/react";
 import { useTranslation } from "react-i18next";
-import key from "../lib/storage.json"
+import key from "../../lib/storage.json"
 import { Preferences } from "@capacitor/preferences";
 import { Directory, Filesystem } from "@capacitor/filesystem";
-import { trigger } from "../lib/Event";
+import { trigger } from "../../lib/Event";
 
 export default function DeleteAllData() {
   const {t} = useTranslation()

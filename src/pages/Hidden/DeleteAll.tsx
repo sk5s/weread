@@ -1,4 +1,4 @@
-import DeleteAllData from "../../components/DeleteAllData";
+import DeleteAllData from "../../components/Button/DeleteAllData";
 import { useTranslation } from "react-i18next";
 import GeneralPage from "../Layout/GeneralPage";
 

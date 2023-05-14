@@ -14,7 +14,8 @@
     "noData": "沒有資料",
     "loading": "載入中",
     "edit": {
-      "deleteAll": "刪除所有資料"
+      "deleteAll": "刪除所有資料",
+      "deleteArticle": "刪除文章"
     }
   },
   "menu": {
