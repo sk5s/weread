@@ -8,13 +8,15 @@ import DOMPurify from 'isomorphic-dompurify';
 import Childpage from "../Layout/ChildPage"
 import "./Detail.css"
 import UrlOpenConfirm from "../../components/Button/UrlOpenConfirm"
-import { IonButton, IonIcon } from "@ionic/react"
+import { IonButton, IonIcon, useIonAlert } from "@ionic/react"
 import { pencilSharp, bookSharp } from "ionicons/icons"
+import mode from "../../mode.json"
 
 export default function Detail() {
   const params = useParams<any>()
   const history = useHistory()
   const {t} = useTranslation()
+  const [presentAlert] = useIonAlert();
   const [readDataList,setReadDataList] = useState<any>({})
   const [fileData,setFileData] = useState<any>({})
   const [html, setHtml] = useState<any>()
@@ -49,12 +51,43 @@ export default function Detail() {
       setHtml(safeHtml)
     }
   }
+  const updateATag = () => {
+    Array.from(document.getElementById("readdetail").getElementsByTagName("a")).forEach((e) => {
+      e.addEventListener("click", async (event) => {
+        event.preventDefault()
+        console.log("clicked", e.href)
+        presentAlert({
+          header: t("pages.detail.confirm.title", { url: e.href}),
+          message: e.href,
+          cssClass: mode.eink === "true" ? "nodrop" : "",
+          buttons: [{
+            text: t("app.confirm.cancel"),
+            role: 'cancel',
+            handler: () => {
+              console.log("cancel")
+            },
+          },
+          {
+            text: t("app.confirm.yes"),
+            role: 'confirm',
+            handler: () => {
+              console.log("confirm")
+              window.open(e.href,'_blank','noopener=yes,noreferrer=yes')
+            },
+          },],
+        })
+      })
+    })
+  }
   useEffect(() => {
     getItemData()
   }, [params.articleId])
   useEffect(() => {
     getFileData()
   }, [readDataList])
+  useEffect(() => {
+    updateATag()
+  }, [html])
   return (
     <Childpage title={readDataList.title}>
       {params.articleId
@@ -76,7 +109,7 @@ export default function Detail() {
       </>
       : <></>
       }
-      <div className="html" key={params.articleId} dangerouslySetInnerHTML={{__html: html}} />
+      <div id="readdetail" className="html" key={params.articleId} dangerouslySetInnerHTML={{__html: html}} />
     </Childpage>
   )
 }

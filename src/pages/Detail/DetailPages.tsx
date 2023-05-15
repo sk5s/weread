@@ -7,13 +7,18 @@ import { Directory, Encoding, Filesystem } from "@capacitor/filesystem"
 import DOMPurify from 'isomorphic-dompurify';
 import CleanPage from "../Layout/CleanPage"
 import { useSwipeable } from 'react-swipeable';
+import { StatusBar } from '@capacitor/status-bar';
+import { App } from "@capacitor/app"
 
 import "./Detail.css"
 import "./DetailPages.css"
+import { useIonAlert } from "@ionic/react"
+import mode from "../../mode.json"
 
 export default function DetailPages() {
   const params = useParams<any>()
   const {t} = useTranslation()
+  const [presentAlert] = useIonAlert();
   const [readDataList,setReadDataList] = useState<any>({})
   const [fileData,setFileData] = useState<any>({})
   const [html, setHtml] = useState<any>()
@@ -21,6 +26,7 @@ export default function DetailPages() {
   const [allPage,setAllPage] = useState(1)
   const [page,setPage] = useState(1)
   const [colWidth,setColWidth] = useState("500px")
+  const [somethingInDivClicked,setSomethingInDivClicked] = useState(false)
 
   const getItemData = async () => {
     let readData = []
@@ -50,7 +56,7 @@ export default function DetailPages() {
         e.relList.add("noopener","noreferrer")
       })
       const safeHtml = DOMPurify.sanitize(doc.documentElement.innerHTML);
-      setHtml(`<h1 style={{fontWeight: "bold"}}>${fileData.title}</h1>`+safeHtml)
+      setHtml(`<h1 style="font-weight: bold;">${fileData.title}</h1>`+safeHtml)
     }
   }
   useEffect(() => {
@@ -82,7 +88,8 @@ export default function DetailPages() {
     setColWidth(document.getElementById("readout")!.offsetWidth.toString() + "px")
     if (document.getElementById("readin") !== null){
       if (document.getElementById("readin")?.offsetWidth !== null){
-        let newAllPage = parseInt((document.getElementById('readin')!.scrollWidth / document.getElementById('readin')!.offsetWidth).toString())
+        let newAllPage = parseInt((Math.round(document.getElementById('readin')!.scrollWidth / document.getElementById('readin')!.offsetWidth)).toString())
+        console.log("allpage: " +newAllPage)
         if (isNaN(newAllPage)) return
         setAllPage(newAllPage)
         setPage(1)
@@ -98,23 +105,85 @@ export default function DetailPages() {
       .getComputedStyle(element, null)
       .getPropertyValue('width');
     let readoutw = parseInt(theCSSprop.split('px')[0])
-    console.log(readoutw);
+    // console.log(readoutw);
     if (document.getElementById('readin') === null) return
     document.getElementById('readin')!.scrollLeft = (page-1) * readoutw;
-    console.log((page-1) * readoutw)
+    // console.log((page-1) * readoutw)
+  }
+  const updateATag = () => {
+    Array.from(document.getElementById("readin").getElementsByTagName("a")).forEach((e) => {
+      e.addEventListener("click", async (event) => {
+        event.preventDefault()
+        setSomethingInDivClicked(true)
+        console.log("clicked", e.href)
+        presentAlert({
+          header: t("pages.detail.confirm.title", { url: e.href}),
+          message: e.href,
+          cssClass: mode.eink === "true" ? "nodrop" : "",
+          buttons: [{
+            text: t("app.confirm.cancel"),
+            role: 'cancel',
+            handler: () => {
+              console.log("cancel")
+              setSomethingInDivClicked(false)
+            },
+          },
+          {
+            text: t("app.confirm.yes"),
+            role: 'confirm',
+            handler: () => {
+              console.log("confirm")
+              setSomethingInDivClicked(false)
+              window.open(e.href,'_blank','noopener=yes,noreferrer=yes')
+            },
+          },],
+        })
+      })
+    })
   }
   useEffect(() => {
     updateAllPage()
+    App.addListener("backButton", () => {
+      showStatusBar()
+    })
+    hideStatusBar()
+    updateATag()
   },[html])
+  const hideStatusBar = async () => {
+    await StatusBar.hide();
+  };
+  const showStatusBar = async () => {
+    await StatusBar.show();
+  };
+  const handleDivClicked = async (e) => {
+    if (somethingInDivClicked) return
+    let fullWidth = document.getElementById('readin')!.offsetWidth
+    let clickWidth = fullWidth / 5
+    console.log(e)
+    if (e.clientX <= clickWidth){
+      previouspage()
+    } else if (e.clientX >= fullWidth - clickWidth){
+      nextpage()
+    } else if (!somethingInDivClicked){
+      let info = await StatusBar.getInfo()
+      if (info.visible){
+        hideStatusBar()
+      } else {
+        showStatusBar()
+      }
+    }
+  }
   return (
     <CleanPage>
-      <div>
-        <span>{page} / {allPage}</span>
-      </div>
-      <div style={{height:"100%",width:"100%",display:"flex",flexDirection:"column"}} {...handlers}>
-        <div style={{position:"relative",flex:1,overflowX: "hidden"}} id="readout">
-          <div id='readin' style={{columnWidth: colWidth}} >
-            <div className="html" key={params.articleId} dangerouslySetInnerHTML={{__html: html}} />
+      <div style={{height:"100%",width:"100%"}}>
+        <div>
+          <span>{page} / {allPage}</span>
+        </div>
+        <div style={{height:"98%",width:"100%",display:"flex",flexDirection:"column"}} {...handlers} onClick={(e) => handleDivClicked(e)}>
+          <div style={{position:"relative",flex:1,overflowX: "hidden"}} id="readout">
+            <div id='readin' style={{columnWidth: colWidth}} >
+              <div className="html" key={params.articleId} dangerouslySetInnerHTML={{__html: html}} />
+            </div>
           </div>
         </div>
       </div>

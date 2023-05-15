@@ -1,0 +1,10 @@
+.nodrop {
+  --ion-backdrop-color: transparent;
+}
+.nodrop .alert-wrapper{
+  border-color: #0f0f0f;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}

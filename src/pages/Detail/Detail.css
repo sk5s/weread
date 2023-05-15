@@ -1,8 +1,11 @@
-:root{
+.html{
   --psize: 1.5rem;
 }
 .html p,
 .html blockquote,
 .html span{
   font-size: var(--psize);
+}
+.html li{
+  font-size: calc(var(--psize) - 5px);
 }

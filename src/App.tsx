@@ -1,4 +1,4 @@
-import { Redirect, Route, useHistory } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
@@ -25,20 +25,29 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 import Detail from './pages/Detail/Detail';
-import { App as NativeApp } from "@capacitor/app";
 import MainMenu from './components/Menu/MainMenu';
 import Edit from './pages/Detail/Edit';
 import DetailPages from './pages/Detail/DetailPages';
 
-setupIonicReact();
+import mode from './mode.json'
+
+const getConfig = () => {
+  let config:any = {
+    hardwareBackButton: true,
+  };
+  if (mode.eink === "true") {
+    config = {
+      ...config,
+      animated: false,
+    }
+  }
+  
+  return config;
+};
+
+setupIonicReact(getConfig());
 
 function App() {
-  const history = useHistory();
-  NativeApp.addListener("backButton", ({ canGoBack }) => {
-    if (canGoBack) {
-      history.goBack();
-    }
-  });
   return (
     <IonApp>
       <IonReactRouter>
