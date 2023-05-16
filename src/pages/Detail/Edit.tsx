@@ -53,7 +53,7 @@ export default function Edit() {
     <Childpage title={readDataList.title}>
       {params.articleId
       ? <>
-        <h1 style={{fontWeight: "bold"}}>{fileData.title}</h1>
+        <h1 style={{fontWeight: "bold", userSelect: "none"}}>{fileData.title}</h1>
         <DeleteArticle id={params.articleId} />
         <UrlOpenConfirm url={fileData.url} />
       </>
