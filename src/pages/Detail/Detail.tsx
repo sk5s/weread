@@ -10,7 +10,6 @@ import "./Detail.css"
 import UrlOpenConfirm from "../../components/Button/UrlOpenConfirm"
 import { IonButton, IonIcon, useIonAlert } from "@ionic/react"
 import { pencilSharp, bookSharp } from "ionicons/icons"
-import mode from "../../mode.json"
 
 export default function Detail() {
   const params = useParams<any>()
@@ -59,7 +58,7 @@ export default function Detail() {
         presentAlert({
           header: t("pages.detail.confirm.title", { url: e.href}),
           message: e.href,
-          cssClass: mode.eink === "true" ? "nodrop" : "",
+          cssClass: false ? "nodrop" : "",
           buttons: [{
             text: t("app.confirm.cancel"),
             role: 'cancel',

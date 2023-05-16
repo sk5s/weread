@@ -13,7 +13,6 @@ import { App } from "@capacitor/app"
 import "./Detail.css"
 import "./DetailPages.css"
 import { useIonAlert } from "@ionic/react"
-import mode from "../../mode.json"
 
 export default function DetailPages() {
   const params = useParams<any>()
@@ -119,7 +118,7 @@ export default function DetailPages() {
         presentAlert({
           header: t("pages.detail.confirm.title", { url: e.href}),
           message: e.href,
-          cssClass: mode.eink === "true" ? "nodrop" : "",
+          cssClass: false ? "nodrop" : "",
           buttons: [{
             text: t("app.confirm.cancel"),
             role: 'cancel',

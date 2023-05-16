@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import { homeSharp, addSharp, trashSharp } from 'ionicons/icons';
 import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote } from '@ionic/react';
 import "./MainMenu.css"
-import mode from "../../mode.json"
 
 interface AppPage {
   url: string;
@@ -36,7 +35,7 @@ export default function MainMenu({menuId}:{menuId: string;}) {
   ];
   const location = useLocation();
   return (
-    <IonMenu contentId={menuId} type="overlay" swipeGesture={false} className={mode.eink === "true" ? "nodrop" : ""}>
+    <IonMenu contentId={menuId} type="overlay" swipeGesture={false} className={false ? "nodrop" : ""}>
       <IonContent>
         <IonList>
           <IonListHeader>{t("app.name")}</IonListHeader>

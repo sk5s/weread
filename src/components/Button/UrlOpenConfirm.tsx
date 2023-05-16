@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { globeSharp } from "ionicons/icons"
 
 import "./UrlOpenConfirm.css"
-import mode from '../../mode.json'
 
 export default function UrlOpenConfirm({url}:{url: string;}) {
   const {t} = useTranslation()
@@ -13,7 +12,7 @@ export default function UrlOpenConfirm({url}:{url: string;}) {
       presentAlert({
         header: t("pages.detail.confirm.title", { url: url}),
         message: url,
-        cssClass: mode.eink === "true" ? "nodrop" : "",
+        cssClass: false ? "nodrop" : "",
         buttons: [{
           text: t("app.confirm.cancel"),
           role: 'cancel',

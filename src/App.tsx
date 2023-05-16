@@ -29,18 +29,16 @@ import MainMenu from './components/Menu/MainMenu';
 import Edit from './pages/Detail/Edit';
 import DetailPages from './pages/Detail/DetailPages';
 
-import mode from './mode.json'
-
 const getConfig = () => {
   let config:any = {
     hardwareBackButton: true,
   };
-  if (mode.eink === "true") {
-    config = {
-      ...config,
-      animated: false,
-    }
-  }
+  // if (mode.eink === "true") {
+  //   config = {
+  //     ...config,
+  //     animated: false,
+  //   }
+  // }
   
   return config;
 };
