@@ -2,7 +2,7 @@ import { useParams } from "react-router"
 import { useTranslation } from "react-i18next"
 import { Preferences } from "@capacitor/preferences"
 import key from '../../lib/storage.json'
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Directory, Encoding, Filesystem } from "@capacitor/filesystem"
 import DOMPurify from 'isomorphic-dompurify';
 import CleanPage from "../Layout/CleanPage"
@@ -13,6 +13,7 @@ import { App } from "@capacitor/app"
 import "./Detail.css"
 import "./DetailPages.css"
 import { useIonAlert } from "@ionic/react"
+import { SettingsContext } from "../../SettingsContext"
 
 export default function DetailPages() {
   const params = useParams<any>()
@@ -26,6 +27,7 @@ export default function DetailPages() {
   const [page,setPage] = useState(1)
   const [colWidth,setColWidth] = useState("500px")
   const [somethingInDivClicked,setSomethingInDivClicked] = useState(false)
+  const context = useContext(SettingsContext)
 
   const getItemData = async () => {
     let readData = []
@@ -84,7 +86,9 @@ export default function DetailPages() {
     onSwipedRight: previouspage
   })
   const updateAllPage = () => {
-    setColWidth(document.getElementById("readout")!.offsetWidth.toString() + "px")
+    if (document.getElementById("readout")!.offsetWidth > 300){
+      setColWidth(document.getElementById("readout")!.offsetWidth.toString() + "px")
+    }
     if (document.getElementById("readin") !== null){
       if (document.getElementById("readin")?.offsetWidth !== null){
         let newAllPage = parseInt((Math.round(document.getElementById('readin')!.scrollWidth / document.getElementById('readin')!.offsetWidth)).toString())
@@ -118,7 +122,7 @@ export default function DetailPages() {
         presentAlert({
           header: t("pages.detail.confirm.title", { url: e.href}),
           message: e.href,
-          cssClass: false ? "nodrop" : "",
+          cssClass: context.imode ? "nodrop" : "",
           buttons: [{
             text: t("app.confirm.cancel"),
             role: 'cancel',

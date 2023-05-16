@@ -2,7 +2,7 @@ import { useHistory, useParams } from "react-router"
 import { useTranslation } from "react-i18next"
 import { Preferences } from "@capacitor/preferences"
 import key from '../../lib/storage.json'
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Directory, Encoding, Filesystem } from "@capacitor/filesystem"
 import DOMPurify from 'isomorphic-dompurify';
 import Childpage from "../Layout/ChildPage"
@@ -10,6 +10,7 @@ import "./Detail.css"
 import UrlOpenConfirm from "../../components/Button/UrlOpenConfirm"
 import { IonButton, IonIcon, useIonAlert } from "@ionic/react"
 import { pencilSharp, bookSharp } from "ionicons/icons"
+import { SettingsContext } from "../../SettingsContext"
 
 export default function Detail() {
   const params = useParams<any>()
@@ -19,6 +20,7 @@ export default function Detail() {
   const [readDataList,setReadDataList] = useState<any>({})
   const [fileData,setFileData] = useState<any>({})
   const [html, setHtml] = useState<any>()
+  const context = useContext(SettingsContext)
   const getItemData = async () => {
     let readData = []
     const { value } = await Preferences.get({ key: key.read });
@@ -58,7 +60,7 @@ export default function Detail() {
         presentAlert({
           header: t("pages.detail.confirm.title", { url: e.href}),
           message: e.href,
-          cssClass: false ? "nodrop" : "",
+          cssClass: context.imode ? "nodrop" : "",
           buttons: [{
             text: t("app.confirm.cancel"),
             role: 'cancel',

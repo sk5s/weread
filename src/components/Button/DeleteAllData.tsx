@@ -22,6 +22,7 @@ export default function DeleteAllData() {
       })
     })
     await Preferences.remove({ key: key.read });
+    await Preferences.remove({ key: key.settings });
     trigger("weread:listChange")
   };
   return (
