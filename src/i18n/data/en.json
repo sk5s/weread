@@ -21,11 +21,12 @@
   "menu": {
     "home": "Home",
     "add": "Add",
-    "delete": "Delete"
+    "settings": "Settings"
   },
   "pages": {
     "add": {
       "title": "Add article",
+      "warn": "Do not add unknown website.",
       "label": {
         "inputUrl": "Input Url",
         "getButton": "Get web data",
@@ -33,10 +34,26 @@
         "clearButton": "Clear"
       }
     },
+    "delete": {
+      "title": "Delete all data"
+    },
     "detail": {
-      "title": "Delete all data",
       "confirm": {
-        "title": "Open?"
+        "title": "Open link?",
+        "addUrl": "Add to Weread"
+      }
+    },
+    "settings": {
+      "imode": {
+        "label": "I mode",
+        "description": "Enable I mode can improve app experience on e paper device."
+      },
+      "changeLang": {
+        "label": "Change Language",
+        "by": "By {{by}}"
+      },
+      "delete": {
+        "label": "Delete data"
       }
     }
   }

@@ -1,12 +1,12 @@
 import DeleteAllData from "../../components/Button/DeleteAllData";
 import { useTranslation } from "react-i18next";
-import GeneralPage from "../Layout/GeneralPage";
+import Childpage from "../Layout/ChildPage";
 
 export default function DeleteAll() {
   const {t} = useTranslation()
   return (
-    <GeneralPage title={t("pages.detail.title")} menuId="menu-delete">
+    <Childpage title={t("pages.delete.title")}>
       <DeleteAllData />
-    </GeneralPage>
+    </Childpage>
   )
 }

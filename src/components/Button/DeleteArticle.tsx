@@ -33,6 +33,6 @@ export default function DeleteArticle({id}:{id:string}) {
     history.push("/home")
   };
   return (
-    <IonButton onClick={() => removeArticle()}>{t("data.edit.deleteArticle")}</IonButton>
+    <IonButton color="dark" onClick={() => removeArticle()}>{t("data.edit.deleteArticle")}</IonButton>
   )
 }

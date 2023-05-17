@@ -16,7 +16,7 @@ import { IonButtons, IonHeader, IonToolbar, useIonAlert } from "@ionic/react"
 import { SettingsContext } from "../../SettingsContext"
 import DetailPagesToolbar from "../../components/Menu/DetailPagesToolbar"
 
-export default function DetailPages() {
+export default function DetailPagesVertical() {
   const params = useParams<any>()
   const {t} = useTranslation()
   const history = useHistory()
@@ -92,12 +92,13 @@ export default function DetailPages() {
     if (document.getElementById("readout")!.offsetWidth > 300){
       setColWidth(document.getElementById("readout")!.offsetWidth.toString() + "px")
     }
-    if (document.getElementById("readin") !== null){
-      if (document.getElementById("readin")?.offsetWidth !== null){
-        let newAllPage = parseInt((Math.round(document.getElementById('readin')!.scrollWidth / document.getElementById('readin')!.offsetWidth)).toString())
+    if (document.getElementById("readinv") !== null){
+      if (document.getElementById("readinv")?.offsetWidth !== null){
+        let newAllPage = parseInt((Math.round(document.getElementById('readinv')!.scrollWidth / document.getElementById('readin')!.offsetWidth)).toString())
         console.log("allpage: " +newAllPage)
         if (isNaN(newAllPage)) return
         setAllPage(newAllPage)
+        document.getElementById('readinv')!.scrollLeft = document.getElementById('readinv')!.scrollWidth
         setPage(1)
       }
     }
@@ -111,13 +112,12 @@ export default function DetailPages() {
       .getComputedStyle(element, null)
       .getPropertyValue('width');
     let readoutw = parseInt(theCSSprop.split('px')[0])
-    // console.log(readoutw);
-    if (document.getElementById('readin') === null) return
-    document.getElementById('readin')!.scrollLeft = (page-1) * readoutw;
-    // console.log((page-1) * readoutw)
+    console.log(readoutw);
+    if (document.getElementById('readinv') === null) return
+    document.getElementById('readinv')!.scrollLeft = document.getElementById('readinv')!.scrollWidth - (page-1) * readoutw;
   }
   const updateATag = () => {
-    Array.from(document.getElementById("readin").getElementsByTagName("a")).forEach((e) => {
+    Array.from(document.getElementById("readinv").getElementsByTagName("a")).forEach((e) => {
       e.addEventListener("click", async (event) => {
         event.preventDefault()
         setSomethingInDivClicked(true)
@@ -165,16 +165,16 @@ export default function DetailPages() {
     updateATag()
   },[html])
   const hideStatusBar = async () => {
-    // await StatusBar.hide();
+    await StatusBar.hide();
     setToolbarShow(false)
   };
   const showStatusBar = async () => {
-    // await StatusBar.show();
+    await StatusBar.show();
     setToolbarShow(true)
   };
   const handleDivClicked = async (e) => {
     if (somethingInDivClicked) return
-    let fullWidth = document.getElementById('readin')!.offsetWidth
+    let fullWidth = document.getElementById('readinv')!.offsetWidth
     let clickWidth = fullWidth / 5
     console.log(e)
     if (e.clientX <= clickWidth){
@@ -192,14 +192,14 @@ export default function DetailPages() {
   }
   return (
     <CleanPage>
-      {toolbarShow ? <DetailPagesToolbar to="/detailpagesvertical/" id={params.articleId} /> : <></>}
+      {toolbarShow ? <DetailPagesToolbar to="/detailpages/" id={params.articleId} />: <></>}
       <div style={{height:"100%",width:"100%"}}>
         <div style={{marginLeft: "15px"}}>
           <span>{page} / {allPage}</span>
         </div>
         <div style={{height:"98%",width:"100%",display:"flex",flexDirection:"column"}} {...handlers} onClick={(e) => handleDivClicked(e)}>
           <div style={{position:"relative",flex:1,overflowX: "hidden"}} id="readout">
-            <div id='readin' style={{columnWidth: colWidth}} >
+            <div id='readinv' className="writeVertical" >
               <div className="html" key={params.articleId} dangerouslySetInnerHTML={{__html: html}} />
             </div>
           </div>

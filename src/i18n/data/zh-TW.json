@@ -21,11 +21,12 @@
   "menu": {
     "home": "首頁",
     "add": "新增",
-    "delete": "刪除"
+    "settings": "設定"
   },
   "pages": {
     "add": {
       "title": "新增文章",
+      "warn": "不建議加入來路不明的網站。",
       "label": {
         "inputUrl": "輸入網址",
         "getButton": "讀取網頁資料",
@@ -33,10 +34,26 @@
         "clearButton": "清除"
       }
     },
+    "delete": {
+      "title": "刪除所有資料"
+    },
     "detail": {
-      "title": "刪除所有資料",
       "confirm": {
-        "title": "確定開啟？"
+        "title": "確定開啟連結？",
+        "addUrl": "新增到 Weread"
+      }
+    },
+    "settings": {
+      "imode": {
+        "label": "I 模式",
+        "description": "啟用 I 模式可以改善電子紙設備上的使用體驗。"
+      },
+      "changeLang": {
+        "label": "切換語言",
+        "by": "由 {{by}} 建立"
+      },
+      "delete": {
+        "label": "刪除資料"
       }
     }
   }

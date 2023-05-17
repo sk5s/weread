@@ -6,7 +6,7 @@ export default function CleanPage({ children }) {
   return (
     <>
       <IonPage>
-        <IonContent className='ion-padding'>
+        <IonContent>
           {children}
         </IonContent>
       </IonPage>

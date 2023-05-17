@@ -1,6 +1,7 @@
 /*
 
 weread:listChange
+weread:settingsChange
 
 */
 

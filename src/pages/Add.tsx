@@ -1,14 +1,13 @@
-import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonInput, IonItem, IonMenuButton, IonPage, IonProgressBar, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonChip, IonCol, IonGrid, IonInput, IonItem, IonProgressBar, IonRow } from '@ionic/react';
 import { useTranslation } from 'react-i18next';
-import MainMenu from '../components/Menu/MainMenu';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Preferences } from '@capacitor/preferences';
 import key from '../lib/storage.json'
 import { v4 as uuidv4 } from 'uuid';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation, useParams } from 'react-router';
 import { Readability } from '@mozilla/readability';
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
-import { trigger } from '../lib/Event';
+import { on, trigger } from '../lib/Event';
 import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
 import sanitize from 'sanitize-filename';
 import GeneralPage from './Layout/GeneralPage';
@@ -16,12 +15,8 @@ import GeneralPage from './Layout/GeneralPage';
 function Add() {
   const {t} = useTranslation()
   const history = useHistory();
-  const [inputUrl, setInputUrl] = useState<string>("");
-  const [valid, setValid] = useState<boolean>(false);
-  const [progress, setProgress] = useState(0)
-  const [title, setTitle] = useState("")
-  const [summary, setSummary] = useState("")
-  const [content, setContent] = useState<any>()
+  let location = useLocation();
+  const useQuery = () => new URLSearchParams(location.search);
   const validateUrl = (str:string) => {
     let url;
     try {
@@ -32,17 +27,32 @@ function Add() {
 
     return url.protocol === "http:" || url.protocol === "https:";
   }
+  const query = useQuery();
+  const [inputUrl, setInputUrl] = useState<string>(query.get("q"));
+  const [valid, setValid] = useState<boolean>(validateUrl(query.get("q")));
+  const [progress, setProgress] = useState(0)
+  const [title, setTitle] = useState("")
+  const [summary, setSummary] = useState("")
+  const [content, setContent] = useState<any>()
+
+  useEffect(() => {
+    setInputUrl(query.get("q"))
+    setValid(validateUrl(query.get("q")))
+  }, [location])
+
   let readList = [];
   const doGet = async (url:string|undefined|null) => {
     if (url === "" || url === null || url === undefined) return
-    setProgress(0.5)
+    setProgress(0.2)
     const options = {
       url
     };
     setTimeout(async () => {
+      setProgress(0.55)
       const response: HttpResponse = await CapacitorHttp.get(options);
       let doc = new DOMParser().parseFromString(response.data, "text/html");
       let myarticle = new Readability(doc).parse();
+      setProgress(0.85)
       if (myarticle !== null) {
         setTitle(myarticle.title)
         setSummary(myarticle.excerpt)
@@ -53,12 +63,9 @@ function Add() {
           content: myarticle.content,
           url: inputUrl
         })
-        setProgress(0.95)
-        setTimeout(() => {
-          setProgress(0)
-        }, 700);
+        setProgress(1)
       }
-    }, 1000);
+    }, 300);
   };
   const addNewWeRead = async (newItem: {
     title: any;
@@ -107,6 +114,7 @@ function Add() {
     setContent({})
     setSummary("")
     setInputUrl("")
+    setProgress(0)
   }
   return (
     <GeneralPage title={t("pages.add.title")} menuId="menu-add">
@@ -114,13 +122,14 @@ function Add() {
         <IonRow>
           <IonCol>
             <IonItem>
-              <IonInput type='url' value={inputUrl} onIonInput={(e) => {if (validateUrl(e.detail.value!)) {setInputUrl(e.detail.value!);setValid(true);}else{setValid(false)}}} label={`${t("pages.add.label.inputUrl")}`} labelPlacement="stacked" placeholder="https://"></IonInput>
+              <IonInput type='url' value={inputUrl} onIonInput={(e) => {setInputUrl(e.detail.value!);setValid(validateUrl(e.detail.value!));}} label={`${t("pages.add.label.inputUrl")}`} labelPlacement="stacked" placeholder="https://"></IonInput>
             </IonItem>
           </IonCol>
         </IonRow>
         <IonRow>
           <IonCol>
             <IonButton
+              color="dark"
               disabled={(inputUrl === "" || !valid) || title != ""}
               expand="full"
               onClick={() => {
@@ -135,10 +144,15 @@ function Add() {
           progress ? 
           <IonRow>
             <IonCol>
-              <IonProgressBar value={progress}></IonProgressBar>
+              <IonProgressBar color="dark" value={progress}></IonProgressBar>
             </IonCol>
           </IonRow>
-          : <></>
+          :
+          <IonRow>
+            <IonCol>
+              <IonChip color="dark">{t("pages.add.warn")}</IonChip>
+            </IonCol>
+          </IonRow>
         }
         <div style={{display: title == "" ? "none" : ""}}>
           <IonRow>
@@ -154,6 +168,7 @@ function Add() {
           <IonRow>
             <IonCol>
               <IonButton
+                color="dark"
                 expand="full"
                 onClick={() => clearForm()}
               >
@@ -162,6 +177,7 @@ function Add() {
             </IonCol>
             <IonCol>
               <IonButton
+                color="dark"
                 expand="full"
                 onClick={() => {
                   addNewWeRead({

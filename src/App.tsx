@@ -3,7 +3,13 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import Add from './pages/Add'
-import DeleteAll from './pages/Hidden/DeleteAll';
+import Detail from './pages/Detail/Detail';
+import MainMenu from './components/Menu/MainMenu';
+import Edit from './pages/Detail/Edit';
+import DetailPages from './pages/Detail/DetailPages';
+import DeleteAll from './pages/Settings/DeleteAll';
+import Settings from './pages/Settings/Settings';
+import DetailPagesVertical from './pages/Detail/DetailPagesVertical';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -24,15 +30,14 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-import Detail from './pages/Detail/Detail';
-import MainMenu from './components/Menu/MainMenu';
-import Edit from './pages/Detail/Edit';
-import DetailPages from './pages/Detail/DetailPages';
 import { useEffect, useState } from 'react';
 import { Preferences } from '@capacitor/preferences';
 import key from './lib/storage.json'
 import defaultSettings from "./lib/defaultSettings.json"
 import { SettingsContext } from './SettingsContext';
+import { on } from './lib/Event';
+import { Device } from '@capacitor/device';
+import { useTranslation } from 'react-i18next';
 
 const getConfig = () => {
   let config:any = {
@@ -47,31 +52,44 @@ setupIonicReact(getConfig());
 
 
 function App() {
-  const [settings, setSettings] = useState<any>(JSON.parse(JSON.stringify(defaultSettings)))
+  const {t,i18n} = useTranslation()
+  const [settings, setSettings] = useState<any>(defaultSettings)
   const getSettings = async () => {
     const { value } = await Preferences.get({ key:  key.settings});
     if (value === null) {
+      let newSaveDefault = {...defaultSettings}
+      let deviceLanguageCode = "";
+      let deviceLanguageCodeObject = await Device.getLanguageCode();
+      deviceLanguageCode = deviceLanguageCodeObject.value
+      console.log(deviceLanguageCode)
+      if (deviceLanguageCode === "zh") {
+        deviceLanguageCode = "zh-TW"
+      } else {
+        deviceLanguageCode = "en"
+      }
+      newSaveDefault.lang = deviceLanguageCode
       await Preferences.set({
         key: key.settings,
-        value: JSON.stringify(defaultSettings)
+        value: JSON.stringify(newSaveDefault)
       })
+      setSettings(newSaveDefault)
+      console.log(newSaveDefault)
+      i18n.changeLanguage(newSaveDefault.lang)
     } else {
-      // await Preferences.set({
-      //   key: key.settings,
-      //   value: JSON.stringify({
-      //     imode: true
-      //   })
-      // })
       let parsedSettings = JSON.parse(value)
       console.log(parsedSettings)
       setSettings(parsedSettings)
       setupIonicReact({
         animated: !parsedSettings.imode
       })
+      i18n.changeLanguage(parsedSettings.lang)
     }
   }
   useEffect(() => {
     getSettings()
+    on("weread:settingsChange", () => {
+      getSettings()
+    })
   }, [])
   return (
     <IonApp>
@@ -88,8 +106,12 @@ function App() {
             <Route exact path="/delete">
               <DeleteAll />
             </Route>
+            <Route exact path="/settings">
+              <Settings />
+            </Route>
             <Route path="/detail/:articleId" component={Detail} />
             <Route path="/detailpages/:articleId" component={DetailPages} />
+            <Route path="/detailpagesvertical/:articleId" component={DetailPagesVertical} />
             <Route path="/edit/:articleId" component={Edit} />
             <Route exact path="/">
               <Redirect to="/home" />

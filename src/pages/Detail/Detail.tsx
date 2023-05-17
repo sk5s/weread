@@ -11,6 +11,7 @@ import UrlOpenConfirm from "../../components/Button/UrlOpenConfirm"
 import { IonButton, IonIcon, useIonAlert } from "@ionic/react"
 import { pencilSharp, bookSharp } from "ionicons/icons"
 import { SettingsContext } from "../../SettingsContext"
+import { trigger } from "../../lib/Event"
 
 export default function Detail() {
   const params = useParams<any>()
@@ -69,6 +70,13 @@ export default function Detail() {
             },
           },
           {
+            text: t("pages.detail.confirm.addUrl"),
+            handler: () => {
+              console.log("addUrl")
+              history.push("/add?q="+e.href)
+            },
+          },
+          {
             text: t("app.confirm.yes"),
             role: 'confirm',
             handler: () => {
@@ -95,12 +103,12 @@ export default function Detail() {
       ? <>
       <h1 style={{fontWeight: "bold"}}>{fileData.title}</h1>
       <div style={{width: "100%", display: "flex", justifyContent: "right"}}>
-        <IonButton fill="clear" onClick={() => {
+        <IonButton color="dark" fill="clear" onClick={() => {
           history.push("/detailpages/"+params.articleId)
         }}>
           <IonIcon slot="icon-only" icon={bookSharp}></IonIcon>
         </IonButton>
-        <IonButton fill="clear" onClick={() => {
+        <IonButton color="dark" fill="clear" onClick={() => {
           history.push("/edit/"+params.articleId)
         }}>
           <IonIcon slot="icon-only" icon={pencilSharp}></IonIcon>
