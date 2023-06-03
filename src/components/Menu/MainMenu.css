@@ -4,7 +4,7 @@
 .nodrop::part(container) {
   box-shadow: none;
   -webkit-box-shadow: none;
-  border-right-color: #0f0f0f;
+  border-right-color: var(--ion-color-light-contrast);
   border-right-style: solid;
   border-right-width: 1px;
 }
