@@ -10,6 +10,7 @@ import CleanPage from "../Layout/CleanPage"
 import Horizontal from "../../components/Read/Horizontal"
 import Normal from "../../components/Read/Normal"
 import Vertical from "../../components/Read/Vertical"
+import "./Detail.css"
 
 export default function Pages() {
   const {t} = useTranslation()

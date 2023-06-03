@@ -3,10 +3,8 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import Add from './pages/Add'
-import Detail from './pages/Detail/Detail';
 import MainMenu from './components/Menu/MainMenu';
 import Edit from './pages/Detail/Edit';
-import DetailPages from './pages/Detail/DetailPages';
 import DeleteAll from './pages/Settings/DeleteAll';
 import Settings from './pages/Settings/Settings';
 
@@ -125,8 +123,6 @@ function App() {
             </Route>
             {/* dynamic */}
             <Route path="/read/:view/:id" component={Pages} />
-            <Route path="/detail/:articleId" component={Detail} />
-            <Route path="/detailpages/:articleId" component={DetailPages} />
             <Route path="/edit/:articleId" component={Edit} />
             <Route exact path="/">
               <Redirect to="/home" />
