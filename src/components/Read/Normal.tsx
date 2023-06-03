@@ -6,8 +6,10 @@ import { useHistory } from "react-router"
 import UrlOpenConfirm from "../Button/UrlOpenConfirm"
 import BackToolbar from "../Menu/BackToolbar"
 import HtmlContent from "./HtmlContent"
+import { SettingsContext } from "../../SettingsContext"
 
 export default function Normal() {
+  const globalSettings = useContext(SettingsContext)
   const article = useContext<any>(DetailContext)
   const history = useHistory()
   return (
@@ -20,11 +22,17 @@ export default function Normal() {
           }}>
             <IonIcon slot="icon-only" icon={swapHorizontalSharp}></IonIcon>
           </IonButton>
-          <IonButton color="dark" fill="clear" onClick={() => {
-            history.push("/read/vertical/"+article.id)
-          }}>
-            <IonIcon slot="icon-only" icon={swapVerticalSharp}></IonIcon>
-          </IonButton>
+
+          {
+            globalSettings.devMode ?
+            <IonButton color="dark" fill="clear" onClick={() => {
+              history.push("/read/vertical/"+article.id)
+            }}>
+              <IonIcon slot="icon-only" icon={swapVerticalSharp}></IonIcon>
+            </IonButton>
+            :<></>
+          }
+          
           <IonButton color="dark" fill="clear" onClick={() => {
             history.push("/edit/"+article.id)
           }}>
