@@ -2,6 +2,7 @@
   "app": {
     "name": "Weread",
     "versionStr": "App 版本：{{versionName}}",
+    "slogan": "Weread - 網頁內容閱讀器",
     "navigate": {
       "back": "返回"
     },
@@ -41,6 +42,9 @@
       "confirm": {
         "title": "確定開啟連結？",
         "addUrl": "新增到 Weread"
+      },
+      "control": {
+        "spaceBetweenPages": "頁面間距"
       }
     },
     "settings": {
@@ -48,12 +52,23 @@
         "label": "I 模式",
         "description": "啟用 I 模式可以改善電子紙設備上的使用體驗。"
       },
+      "devMode": {
+        "label": "開發者模式",
+        "description": "開啟開發者模式可以啟用一些開發者功能。"
+      },
+      "hideStatusBar": {
+        "label": "隱藏狀態列",
+        "description": "使用應用程式時隱藏狀態列。"
+      },
       "changeLang": {
         "label": "切換語言",
         "by": "由 {{by}} 建立"
       },
       "delete": {
         "label": "刪除資料"
+      },
+      "about": {
+        "label": "關於 {{app}}"
       }
     }
   }

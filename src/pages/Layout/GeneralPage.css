@@ -1,5 +1,5 @@
 .noShadow.header-md{
-  border-bottom: 1px #000 solid;
+  border-bottom: 1px solid var(--ion-color-light-contrast);
 }
 .noShadow.header-md::after {
   /* Removes the toolbar shadow. */

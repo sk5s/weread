@@ -8,7 +8,7 @@ import { on } from '../lib/Event';
 import { useLongPress } from 'use-long-press';
 import { SettingsContext } from '../SettingsContext';
 
-export default function MainReadList() {
+export default function MainReadList({list}) {
   const {t} = useTranslation()
   const context = useContext(SettingsContext)
   const history = useHistory();
@@ -41,7 +41,13 @@ export default function MainReadList() {
       if (readDataList.length) {
         readDataList.forEach((e,i) => {
           row.push(
-            <IonItem key={e.id} id={"listItem+"+e.id} onClick={() => {history.push(`/detail/${e.id}`);}} {...bind()} className='ion-activatable ripple-parent'>
+            <IonItem key={e.id} id={"listItem+"+e.id} onClick={() => {
+              if (list === "horizontal"){
+                history.push(`/read/horizontal/${e.id}`)
+              }else {
+                history.push(`/read/normal/${e.id}`);
+              }
+            }} {...bind()} className='ion-activatable ripple-parent'>
               {
                 context.imode ? 
                 <></> :

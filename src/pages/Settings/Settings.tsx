@@ -25,9 +25,29 @@ export default function Settings() {
   const IModeToggle = () => {
     return (
       <IonItem>
-        <div>
-          <IonToggle onIonChange={(e) => changeSetting("imode",e.target.checked)} checked={context.imode}>{t("pages.settings.imode.label")}</IonToggle>
+        <div style={{width: "100%"}}>
+          <IonToggle onIonChange={(e) => changeSetting("imode",e.target.checked)} checked={context.imode} labelPlacement="start" justify="space-between">{t("pages.settings.imode.label")}</IonToggle>
           <small>{t("pages.settings.imode.description")}</small>
+        </div>
+      </IonItem>
+    )
+  }
+  const DevModeToggle = () => {
+    return (
+      <IonItem>
+        <div style={{width: "100%"}}>
+          <IonToggle onIonChange={(e) => changeSetting("devMode",e.target.checked)} checked={context.devMode} labelPlacement="start" justify="space-between">{t("pages.settings.devMode.label")}</IonToggle>
+          <small>{t("pages.settings.devMode.description")}</small>
+        </div>
+      </IonItem>
+    )
+  }
+  const StatusBarToggle = () => {
+    return (
+      <IonItem>
+        <div style={{width: "100%"}}>
+          <IonToggle onIonChange={(e) => changeSetting("hideStatusBar",e.target.checked)} checked={context.hideStatusBar} labelPlacement="start" justify="space-between">{t("pages.settings.hideStatusBar.label")}</IonToggle>
+          <small>{t("pages.settings.hideStatusBar.description")}</small>
         </div>
       </IonItem>
     )
@@ -95,12 +115,22 @@ export default function Settings() {
       </IonItem>
     )
   }
+  const InfoPage = () => {
+    return (
+      <IonItem detail={true} onClick={() => history.push("/about")}>
+        <IonLabel>{t("pages.settings.about.label",{app: t("app.name")})}</IonLabel>
+      </IonItem>
+    )
+  }
   return (
     <GeneralPage title={t("menu.settings")} menuId="menu-home">
       <IonList>
         <IModeToggle />
+        <StatusBarToggle />
         <ChangeLang />
         <DeletePage />
+        <DevModeToggle />
+        <InfoPage />
       </IonList>
     </GeneralPage>
   )

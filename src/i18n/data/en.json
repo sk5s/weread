@@ -2,6 +2,7 @@
   "app": {
     "name": "Weread",
     "versionStr": "App version: {{versionName}}",
+    "slogan": "Weread - Web content",
     "navigate": {
       "back": "Back"
     },
@@ -41,6 +42,9 @@
       "confirm": {
         "title": "Open link?",
         "addUrl": "Add to Weread"
+      },
+      "control": {
+        "spaceBetweenPages": "Space between pages"
       }
     },
     "settings": {
@@ -48,12 +52,23 @@
         "label": "I mode",
         "description": "Enable I mode can improve app experience on e paper device."
       },
+      "devMode": {
+        "label": "Dev mode",
+        "description": "Enable dev mode can access some developer function."
+      },
+      "hideStatusBar": {
+        "label": "Hide status bar",
+        "description": "Hide status bar when using the app."
+      },
       "changeLang": {
         "label": "Change Language",
         "by": "By {{by}}"
       },
       "delete": {
         "label": "Delete data"
+      },
+      "about": {
+        "label": "About {{app}}"
       }
     }
   }

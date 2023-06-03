@@ -9,7 +9,6 @@ import Edit from './pages/Detail/Edit';
 import DetailPages from './pages/Detail/DetailPages';
 import DeleteAll from './pages/Settings/DeleteAll';
 import Settings from './pages/Settings/Settings';
-import DetailPagesVertical from './pages/Detail/DetailPagesVertical';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -38,6 +37,9 @@ import { SettingsContext } from './SettingsContext';
 import { on } from './lib/Event';
 import { Device } from '@capacitor/device';
 import { useTranslation } from 'react-i18next';
+import Pages from './pages/Detail/Pages';
+import About from './pages/Settings/About';
+import { StatusBar } from '@capacitor/status-bar';
 
 const getConfig = () => {
   let config:any = {
@@ -85,6 +87,14 @@ function App() {
       i18n.changeLanguage(parsedSettings.lang)
     }
   }
+  const hideStatusBar = async () => {
+    if (settings.hideStatusBar) {
+      await StatusBar.hide()
+    } else {
+      await StatusBar.show()
+    }
+  }
+  hideStatusBar()
   useEffect(() => {
     getSettings()
     on("weread:settingsChange", () => {
@@ -103,15 +113,20 @@ function App() {
             <Route exact path="/add">
               <Add />
             </Route>
-            <Route exact path="/delete">
-              <DeleteAll />
-            </Route>
+            {/* settings */}
             <Route exact path="/settings">
               <Settings />
             </Route>
+            <Route exact path="/delete">
+              <DeleteAll />
+            </Route>
+            <Route exact path="/about">
+              <About />
+            </Route>
+            {/* dynamic */}
+            <Route path="/read/:view/:id" component={Pages} />
             <Route path="/detail/:articleId" component={Detail} />
             <Route path="/detailpages/:articleId" component={DetailPages} />
-            <Route path="/detailpagesvertical/:articleId" component={DetailPagesVertical} />
             <Route path="/edit/:articleId" component={Edit} />
             <Route exact path="/">
               <Redirect to="/home" />

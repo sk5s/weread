@@ -1,4 +1,7 @@
 {
   "imode": false,
-  "lang": "en"
+  "lang": "en",
+  "devMode": false,
+  "defaultReadView": "normal",
+  "hideStatusBar": false
 }

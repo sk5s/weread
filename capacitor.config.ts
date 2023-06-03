@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'cyou.sk5s.app.weread',
-  appName: 'weread',
+  appName: 'Weread',
   webDir: 'dist',
   server: {
     androidScheme: 'https'
@@ -10,7 +10,7 @@ const config: CapacitorConfig = {
   plugins: {
     CapacitorHttp: {
       enabled: true,
-    },
+    }
   },
 };
 

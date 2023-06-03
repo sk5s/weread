@@ -2,8 +2,8 @@
   position: absolute;
   height: 100%;
   overflow-x: scroll;
-  column-gap: 30px;
-  padding: 15px;
+  /* column-gap: 30px;
+  padding: 15px; */
   touch-action: none;
 }
 #readin::-webkit-scrollbar {
@@ -15,7 +15,7 @@
   position: absolute;
   height: 100%;
   overflow-y: scroll;
-  column-gap: 30px;
-  padding: 15px;
+  column-gap: 0;
+  padding: 0;
   touch-action: none;
 }

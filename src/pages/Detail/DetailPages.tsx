@@ -24,13 +24,18 @@ export default function DetailPages() {
   const [readDataList,setReadDataList] = useState<any>({})
   const [fileData,setFileData] = useState<any>({})
   const [html, setHtml] = useState<any>()
+  const [view, setView] = useState("horizontal")
 
   const [allPage,setAllPage] = useState(1)
   const [page,setPage] = useState(1)
   const [colWidth,setColWidth] = useState("500px")
   const [somethingInDivClicked,setSomethingInDivClicked] = useState(false)
   const [toolbarShow, setToolbarShow] = useState(false)
+
+  const [margin, setMargin] = useState(15)
+
   const context = useContext(SettingsContext)
+
 
   const getItemData = async () => {
     let readData = []
@@ -182,8 +187,7 @@ export default function DetailPages() {
     } else if (e.clientX >= fullWidth - clickWidth){
       nextpage()
     } else if (!somethingInDivClicked){
-      let info = await StatusBar.getInfo()
-      if (info.visible){
+      if (toolbarShow){
         hideStatusBar()
       } else {
         showStatusBar()
@@ -191,19 +195,21 @@ export default function DetailPages() {
     }
   }
   return (
-    <CleanPage>
-      {toolbarShow ? <DetailPagesToolbar to="/detailpagesvertical/" id={params.articleId} /> : <></>}
+    <CleanPage back={false} title={""}>
+      {toolbarShow ? <DetailPagesToolbar view={view} /> : <></>}
       <div style={{height:"100%",width:"100%"}}>
         <div style={{marginLeft: "15px"}}>
           <span>{page} / {allPage}</span>
         </div>
+        {/* horizontal */}
         <div style={{height:"98%",width:"100%",display:"flex",flexDirection:"column"}} {...handlers} onClick={(e) => handleDivClicked(e)}>
           <div style={{position:"relative",flex:1,overflowX: "hidden"}} id="readout">
-            <div id='readin' style={{columnWidth: colWidth}} >
+            <div id='readin' style={{columnWidth: colWidth,columnGap: margin*2+"px",padding:margin+"px"}} >
               <div className="html" key={params.articleId} dangerouslySetInnerHTML={{__html: html}} />
             </div>
           </div>
         </div>
+        {/* vertical */}
       </div>
     </CleanPage>
   )
