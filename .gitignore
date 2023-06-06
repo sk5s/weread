@@ -30,3 +30,5 @@ yarn-error.log*
 .eslintcache
 
 resources/android/**/*
+
+weread.jks
