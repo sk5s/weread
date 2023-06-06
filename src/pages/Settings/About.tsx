@@ -41,7 +41,7 @@ export default function About() {
           <a
             rel="noreferrer"
             target="_blank"
-            href="https://play.google.com/store/apps/details?id=cyou.sk5s.app.countdate&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+            href="https://play.google.com/store/apps/details?id=cyou.sk5s.app.weread"
           >
             <img
               alt="Get it on Google Play"
@@ -49,7 +49,7 @@ export default function About() {
               width="150px"
             />
           </a>
-          <a
+          {/* <a
             rel="noreferrer"
             target="_blank"
             href="https://apt.izzysoft.de/fdroid/index/apk/cyou.sk5s.app.countdate"
@@ -59,7 +59,7 @@ export default function About() {
               src="https://sk5s.cyou/countdate-landing/assets/img/IzzyOnDroid.png"
               width="150px"
             />
-          </a>
+          </a> */}
         </div>
       </div>
       {/* detail */}
@@ -69,16 +69,16 @@ export default function About() {
       <ul style={{ fontSize: "25px" }}>
         <li>
           <a
-            href="https://sk5s.cyou/countdate-landing/"
+            href="https://weread.sk5s.cyou/"
             target="_blank"
             rel="noopener noreferrer"
           >
             Landing page
           </a>
         </li>
-        <li>
+        {/* <li>
           <a
-            href="https://github.com/sk5s/countdateapp"
+            href="https://github.com/sk5s/weread"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -87,7 +87,7 @@ export default function About() {
         </li>
         <li>
           <a
-            href="https://github.com/sk5s/countdateapp/issues"
+            href="https://github.com/sk5s/weread/issues"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -96,13 +96,13 @@ export default function About() {
         </li>
         <li>
           <a
-            href="https://github.com/sk5s/countdateapp/issues"
+            href="https://github.com/sk5s/weread/issues"
             target="_blank"
             rel="noopener noreferrer"
           >
             Request feature
           </a>
-        </li>
+        </li> */}
       </ul>
     </Childpage>
   )
