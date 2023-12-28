@@ -11,7 +11,7 @@ export default function UrlOpenConfirm({url}:{url: string;}) {
   const [presentAlert] = useIonAlert();
   const context = useContext(SettingsContext)
   return (
-    <IonButton color="dark" fill="clear" size="small" onClick={() => {
+    <IonButton color="dark" fill="clear" onClick={() => {
       presentAlert({
         header: t("pages.detail.confirm.title", { url: url}),
         message: url,

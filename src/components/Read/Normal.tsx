@@ -1,10 +1,9 @@
 import { useContext } from "react"
 import { DetailContext } from "../../pages/Detail/Context"
 import { IonButton, IonIcon } from "@ionic/react"
-import { bookSharp, pencilSharp, swapHorizontalSharp, swapVerticalSharp } from "ionicons/icons"
+import { pencilSharp, swapHorizontalSharp, swapVerticalSharp } from "ionicons/icons"
 import { useHistory } from "react-router"
 import UrlOpenConfirm from "../Button/UrlOpenConfirm"
-import BackToolbar from "../Menu/BackToolbar"
 import HtmlContent from "./HtmlContent"
 import { SettingsContext } from "../../SettingsContext"
 
