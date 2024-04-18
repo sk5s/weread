@@ -1,7 +1,7 @@
 {
   "name": "weread",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,13 +13,13 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@capacitor/android": "5.7.5",
-    "@capacitor/app": "5.0.7",
-    "@capacitor/core": "5.7.5",
-    "@capacitor/device": "5.0.7",
-    "@capacitor/filesystem": "5.2.1",
-    "@capacitor/preferences": "5.0.7",
-    "@capacitor/status-bar": "5.0.7",
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/app": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/device": "^6.0.0",
+    "@capacitor/filesystem": "^6.0.0",
+    "@capacitor/preferences": "^6.0.0",
+    "@capacitor/status-bar": "^6.0.0",
     "@ionic/react": "7.8.5",
     "@ionic/react-router": "7.8.5",
     "@mozilla/readability": "0.5.0",
@@ -27,7 +27,7 @@
     "@types/react-router-dom": "^5.3.3",
     "i18next": "22.5.1",
     "ionicons": "7.3.1",
-    "isomorphic-dompurify": "1.13.0",
+    "isomorphic-dompurify": "2.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "12.3.1",
@@ -40,7 +40,7 @@
     "uuid": "9.0.1"
   },
   "devDependencies": {
-    "@capacitor/cli": "5.7.5",
+    "@capacitor/cli": "^6.0.0",
     "@testing-library/jest-dom": "5.17.0",
     "@testing-library/react": "14.3.1",
     "@testing-library/user-event": "14.5.2",
