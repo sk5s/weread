@@ -11,7 +11,7 @@ export default function BackToolbar({
   const context = useContext(SettingsContext)
   const {t} = useTranslation()
   return (
-    <IonHeader className={context.imode ? "noShadow" : ""}>
+    <IonHeader className={context.imode ? "ion-no-border" : ""}>
       <IonToolbar>
         <IonButtons slot="start">
           <IonBackButton text={t("app.navigate.back")}></IonBackButton>

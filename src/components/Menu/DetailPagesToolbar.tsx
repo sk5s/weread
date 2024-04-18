@@ -7,7 +7,7 @@ export default function DetailPagesToolbar({view}) {
   const context = useContext(SettingsContext)
   return (
     <div style={{position: "fixed", width:"100%", zIndex: 1000}}>
-      <IonHeader className={context.imode ? "noShadow" : ""}>
+      <IonHeader className={context.imode ? "ion-no-border" : ""}>
         <IonToolbar>
           <IonButtons slot="end">
             <IonButton color="dark" fill="clear" onClick={() => {

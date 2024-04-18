@@ -8,7 +8,7 @@ export default function GeneralPage({ children, title, menuId }) {
   return (
     <>
       <IonPage id={menuId}>
-        <IonHeader className={context.imode ? "noShadow" : ""}>
+        <IonHeader className={context.imode ? "ion-no-border" : ""}>
           <IonToolbar>
             <IonButtons slot="start">
               <IonMenuButton></IonMenuButton>

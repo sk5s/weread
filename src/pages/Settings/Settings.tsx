@@ -71,7 +71,7 @@ export default function Settings() {
           <IonLabel>{t("pages.settings.changeLang.label")}</IonLabel>
         </IonItem>
         <IonModal ref={modal} trigger="open-lang-modal" onWillDismiss={(ev) => onWillDismiss(ev)}>
-          <IonHeader className={context.imode ? "noShadow" : ""}>
+          <IonHeader className={context.imode ? "ion-no-border" : ""}>
             <IonToolbar>
               <IonButtons slot="start">
                 <IonButton onClick={() => modal.current?.dismiss()}>{t("app.confirm.cancel")}</IonButton>
