@@ -1,2 +1,4 @@
 /build/*
 !/build/.npmkeep
+/release/*
+!/build/output-metadata.json
