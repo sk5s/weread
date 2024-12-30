@@ -2,7 +2,7 @@
   "app": {
     "name": "Weread",
     "versionStr": "App 版本：{{versionName}}",
-    "slogan": "Weread - 網頁內容閱讀器",
+    "slogan": "Weread - 稍後閱讀",
     "navigate": {
       "back": "返回"
     },

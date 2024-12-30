@@ -2,7 +2,7 @@
   "app": {
     "name": "Weread",
     "versionStr": "App version: {{versionName}}",
-    "slogan": "Weread - Web content",
+    "slogan": "Weread - Read it later",
     "navigate": {
       "back": "Back"
     },
