@@ -35,8 +35,8 @@ export default function Edit() {
         encoding: Encoding.UTF8,
       });
       console.log('secrets:', contents);
-      setFileData(JSON.parse(contents.data))
-      let doc = new DOMParser().parseFromString(JSON.parse(contents.data).content, 'text/html');
+      setFileData(JSON.parse(contents.data as string))
+      let doc = new DOMParser().parseFromString(JSON.parse(contents.data as string).content, 'text/html');
       Array.from(doc.getElementsByTagName("a")).forEach((e) => {
         e.relList.add("noopener","noreferrer")
       })

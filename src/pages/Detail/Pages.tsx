@@ -49,13 +49,13 @@ export default function Pages() {
         encoding: Encoding.UTF8,
       });
       console.log('secrets:', contents);
-      let doc = new DOMParser().parseFromString(JSON.parse(contents.data).content, 'text/html');
+      let doc = new DOMParser().parseFromString(JSON.parse(contents.data as string).content, 'text/html');
       Array.from(doc.getElementsByTagName("a")).forEach((e) => {
         e.relList.add("noopener","noreferrer")
       })
       const safeHtml = DOMPurify.sanitize(doc.documentElement.innerHTML);
       setData("html",safeHtml)
-      setData("url",JSON.parse(contents.data).url)
+      setData("url",JSON.parse(contents.data as string).url)
       setData("columnGap","15")
     }
   }
