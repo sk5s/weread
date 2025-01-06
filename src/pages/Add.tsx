@@ -121,7 +121,7 @@ function Add() {
       <IonGrid>
         <IonRow>
           <IonCol>
-            <IonItem>
+            <IonItem style={{marginLeft: "-10px"}}>
               <IonInput type='url' value={inputUrl} onIonInput={(e) => {setInputUrl(e.detail.value!);setValid(validateUrl(e.detail.value!));}} label={`${t("pages.add.label.inputUrl")}`} labelPlacement="stacked" placeholder="https://"></IonInput>
             </IonItem>
           </IonCol>

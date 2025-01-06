@@ -3,6 +3,7 @@ import Childpage from "../Layout/ChildPage";
 import { IonChip, getPlatforms } from "@ionic/react";
 import { App } from "@capacitor/app"
 import { useEffect, useState } from "react";
+import logo from "../../../resources/icon.png"
 
 export default function About() {
   const {t} = useTranslation()
@@ -19,7 +20,7 @@ export default function About() {
     <Childpage title={t("pages.settings.about.label",{app: t("app.name")})}>
       <div style={{ width: "100%", textAlign: "center" }}>
         <a href="https://github.com/sk5s/weread" target="_blank" rel="noreferrer">
-          {/* <img src={logo} alt="Logo" width="80" height="80" /> */}
+          <img style={{borderRadius: "8px"}} src={logo} alt="Logo" width="80" height="80" />
         </a>
         <p>
           {t("app.name")} {t("app.versionStr",{versionName: version})}
@@ -49,17 +50,17 @@ export default function About() {
               width="150px"
             />
           </a>
-          {/* <a
+          <a
             rel="noreferrer"
             target="_blank"
-            href="https://apt.izzysoft.de/fdroid/index/apk/cyou.sk5s.app.countdate"
+            href="https://apt.izzysoft.de/fdroid/index/apk/cyou.sk5s.app.weread"
           >
             <img
               alt="Get it on Google Play"
               src="https://sk5s.cyou/countdate-landing/assets/img/IzzyOnDroid.png"
               width="150px"
             />
-          </a> */}
+          </a>
         </div>
       </div>
       {/* detail */}
@@ -76,7 +77,7 @@ export default function About() {
             Landing page
           </a>
         </li>
-        {/* <li>
+        <li>
           <a
             href="https://github.com/sk5s/weread"
             target="_blank"
@@ -102,7 +103,7 @@ export default function About() {
           >
             Request feature
           </a>
-        </li> */}
+        </li>
       </ul>
     </Childpage>
   )
