@@ -9,16 +9,16 @@ body:
       label: Prerequisites
       description: Please ensure you have completed all of the following.
       options:
-        - label: I have read the [Contributing Guidelines](https://github.com/sk5s/countdateapp#contributing).
+        - label: I have read the [Contributing Guidelines](https://github.com/sk5s/weread#contributing).
           required: true
-        - label: I agree to follow the [Code of Conduct](https://github.com/sk5s/countdateapp/blob/main/CODE_OF_CONDUCT.md).
+        - label: I agree to follow the [Code of Conduct](https://github.com/sk5s/weread/blob/main/CODE_OF_CONDUCT.md).
           required: true
-        - label: I have searched for [existing issues](https://github.com/sk5s/countdateapp/issues) that already include this feature request, without success.
+        - label: I have searched for [existing issues](https://github.com/sk5s/weread/issues) that already include this feature request, without success.
           required: true
   - type: textarea
     attributes:
-      label: Countdate version
-      description: Please enter which versions of Countdate this issue impacts.
+      label: App Version
+      description: Please enter which versions of app this issue impacts.
     validations:
       required: true
   - type: textarea
