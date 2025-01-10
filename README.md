@@ -15,6 +15,8 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
+> **[Free app publishing by 🚀 Launch Hive](https://launch-hive.sk5s.com/)**
+
 [![Releases Version][releases-version-shield]][releases-version-url]
 [![Last Commit][last-commit-shield]][last-commit-url]
 ![Top Lang][top-languages-shield]
@@ -76,10 +78,8 @@
 
 ## About The Project
 
-<!--[![Product Name Screen Shot]](https://sk5s.cyou/)-->
-
 <a target="_blank" href='https://play.google.com/store/apps/details?id=cyou.sk5s.app.weread'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="150px"/></a>
-<!-- <a target="_blank" href='https://apt.izzysoft.de/fdroid/index/apk/cyou.sk5s.app.weread'><img alt='Get it on IzzyOnDroid' src='https://sk5s.cyou/countdate-landing/assets/img/IzzyOnDroid.png' width="150px"/></a> -->
+<a target="_blank" href='https://apt.izzysoft.de/fdroid/index/apk/cyou.sk5s.app.weread'><img alt='Get it on IzzyOnDroid' src='https://sk5s.cyou/countdate-landing/assets/img/IzzyOnDroid.png' width="150px"/></a>
 
 Read it later for web content
 
@@ -87,10 +87,10 @@ Read it later for web content
 Ready to use native app.
 
 **Free to Use**
-As always, this app is free to download and use!
+This app is free to download and use!
 
 **Open Source**
-Since this app is MIT licensed, you can modified it!
+Since this app is MIT licensed, you can modify it!
 
 > Weread is a web content read-it-later app that allows users to save articles, blog posts, and other web content for a better reading experience.
 
@@ -114,6 +114,8 @@ Since this app is MIT licensed, you can modified it!
 ### Installation
 
 Install through apks in the release section, or install from app stores like Play store or F-droid(IzzyOnDroid).
+
+To use IzzyOnDroid, you can first install the [Droidify](https://github.com/Droid-ify/client/releases) F-droid client, or other F-droid client. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
