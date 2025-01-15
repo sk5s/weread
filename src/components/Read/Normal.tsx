@@ -39,7 +39,7 @@ export default function Normal() {
           </IonButton>
           <UrlOpenConfirm url={article.url} />
         </div>
-        <HtmlContent />
+        <HtmlContent type="normal" />
       </div>
     </>
   )

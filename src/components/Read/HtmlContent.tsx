@@ -10,8 +10,10 @@ import 'react-mobile-image-viewer/lib/index.css';
 
 export default function HtmlContent({
   setSomethingInDivClicked,
+  type
 }:{
   setSomethingInDivClicked?:any;
+  type: 'normal'|'vertical'|'horizontal';
 }) {
   if (!setSomethingInDivClicked) {
     setSomethingInDivClicked = (e) => console.log(e)
@@ -58,7 +60,7 @@ export default function HtmlContent({
         },],
       })
     }
-    Array.from(document.getElementById("htmlContent_" + article.id).getElementsByTagName("a")).forEach((e) => {
+    Array.from(document.getElementById("htmlContent_" + article.id + "_" + type).getElementsByTagName("a")).forEach((e) => {
       let handler = (event) => {
         handleClick(event, e)
       }
@@ -66,7 +68,7 @@ export default function HtmlContent({
     })
   }
   const updateImgTag = () => {
-    Array.from(document.getElementById("htmlContent_" + article.id).getElementsByTagName("img")).forEach((e) => {
+    Array.from(document.getElementById("htmlContent_" + article.id + "_" + type).getElementsByTagName("img")).forEach((e) => {
       e.onclick = () => {
         viewer({
           urls: [e.src],
@@ -82,7 +84,7 @@ export default function HtmlContent({
   },[article.html])
   return (
     <>
-    <div id={"htmlContent_" + article.id} className="html" key={article.id} dangerouslySetInnerHTML={{__html: article.html}} />
+    <div id={"htmlContent_" + article.id + "_" + type} className="html" key={article.id} dangerouslySetInnerHTML={{__html: article.html}} />
     </>
   )
 }

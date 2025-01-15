@@ -86,7 +86,7 @@ export default function Vertical() {
       <div id="vertical_container" style={{width: "100%", height: "100%", display: "flex", flexDirection: "column"}} {...handlers} onClick={(e) => handleDivClicked(e)}>
           <div id="vertical_readout" style={{position:"relative",overflow: "hidden", flex: 1, width: "100%"}}>
             <div id="vertical_readin" style={{writingMode: "vertical-rl", touchAction: "none", position: "absolute", overflowY: "scroll", width: "100%", columnWidth: "500px",columnGap: article.columnGap*2+"px",paddingTop: article.columnGap+"px",paddingBottom: article.columnGap+"px",paddingLeft:"15px",paddingRight: "15px"}} >
-              <HtmlContent setSomethingInDivClicked={setSomethingInDivClicked} />
+              <HtmlContent type="vertical" setSomethingInDivClicked={setSomethingInDivClicked} />
             </div>
           </div>
       </div>

@@ -86,7 +86,7 @@ export default function Horizontal() {
       <div id="horizontal_container" style={{width: "100%", height: "100%", display: "flex", flexDirection: "column"}} {...handlers} onClick={(e) => handleDivClicked(e)}>
           <div id="horizontal_readout" style={{position:"relative",overflowX: "hidden", flex: 1}}>
             <div id="horizontal_readin" style={{touchAction: "none", position: "absolute", overflowX: "scroll", height: "100%", columnWidth: "500px",columnGap: article.columnGap*2+"px",paddingLeft: article.columnGap+"px",paddingRight: article.columnGap+"px",paddingTop:"20px",paddingBottom: "20px"}} >
-              <HtmlContent setSomethingInDivClicked={setSomethingInDivClicked} />
+              <HtmlContent type="horizontal" setSomethingInDivClicked={setSomethingInDivClicked} />
             </div>
           </div>
       </div>
