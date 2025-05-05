@@ -62,8 +62,12 @@ export default function HtmlContent({
     }
     Array.from(document.getElementById("htmlContent_" + article.id + "_" + type).getElementsByTagName("a")).forEach((e) => {
       const baseUrl = new URL(article.url);
-      if (e.getAttribute("href").startsWith("/")) {
-        const absoluteUrl = new URL(e.getAttribute("href"), baseUrl.origin).href;
+      const hrefValue = e.getAttribute("href");
+      if (hrefValue.startsWith("/")) {
+        const absoluteUrl = new URL(hrefValue, baseUrl.origin).href;
+        e.setAttribute("href", absoluteUrl);
+      } else if (!hrefValue.startsWith("http://") && !hrefValue.  startsWith("https://")) {
+        const absoluteUrl = new URL(hrefValue, baseUrl.origin + baseUrl.pathname).href;
         e.setAttribute("href", absoluteUrl);
       }
       let handler = (event) => {
