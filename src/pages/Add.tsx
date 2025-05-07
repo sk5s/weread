@@ -1,6 +1,6 @@
-import { IonButton, IonChip, IonCol, IonGrid, IonInput, IonItem, IonProgressBar, IonRow } from '@ionic/react';
+import { IonButton, IonChip, IonCol, IonGrid, IonInput, IonItem, IonProgressBar, IonRow, useIonAlert } from '@ionic/react';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Preferences } from '@capacitor/preferences';
 import key from '../lib/storage.json'
 import { v4 as uuidv4 } from 'uuid';
@@ -11,11 +11,14 @@ import { on, trigger } from '../lib/Event';
 import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
 import sanitize from 'sanitize-filename';
 import GeneralPage from './Layout/GeneralPage';
+import { SettingsContext } from '../SettingsContext';
 
 function Add() {
   const {t} = useTranslation()
   const history = useHistory();
   let location = useLocation();
+  const context = useContext(SettingsContext);
+  const [presentAlert] = useIonAlert();
   const useQuery = () => new URLSearchParams(location.search);
   const validateUrl = (str:string) => {
     let url;
@@ -49,21 +52,37 @@ function Add() {
     };
     setTimeout(async () => {
       setProgress(0.55)
-      const response: HttpResponse = await CapacitorHttp.get(options);
-      let doc = new DOMParser().parseFromString(response.data, "text/html");
-      let myarticle = new Readability(doc).parse();
-      setProgress(0.85)
-      if (myarticle !== null) {
-        setTitle(myarticle.title)
-        setSummary(myarticle.excerpt)
-        console.log(myarticle)
-        setContent({
-          title: myarticle.title,
-          length: myarticle.length,
-          content: myarticle.content,
-          url: inputUrl
+      try{
+        const response: HttpResponse = await CapacitorHttp.get(options);
+        let doc = new DOMParser().parseFromString(response.data, "text/html");
+        let myarticle = new Readability(doc).parse();
+        setProgress(0.85)
+        if (myarticle !== null) {
+          setTitle(myarticle.title)
+          setSummary(myarticle.excerpt)
+          console.log(myarticle)
+          setContent({
+            title: myarticle.title,
+            length: myarticle.length,
+            content: myarticle.content,
+            url: inputUrl
+          })
+          setProgress(1)
+        }
+      } catch (error) {
+        console.error("Error fetching or parsing data:", error);
+        // Handle the error appropriately, e.g., display an error message to the user
+        presentAlert({
+          header: t("pages.add.failedToFetch.header"),
+          message: t("pages.add.failedToFetch.message"),
+          cssClass: context.imode ? "nodrop" : "",
+          buttons: [
+          {
+            text: t("app.confirm.yes"),
+            role: 'confirm'
+          },],
         })
-        setProgress(1)
+        setProgress(0);
       }
     }, 300);
   };
@@ -130,7 +149,7 @@ function Add() {
           <IonCol>
             <IonButton
               color="dark"
-              disabled={(inputUrl === "" || !valid) || title != ""}
+              disabled={(inputUrl === "" || !valid)}
               expand="full"
               onClick={() => {
                 doGet(inputUrl)
@@ -154,7 +173,10 @@ function Add() {
             </IonCol>
           </IonRow>
         }
-        <div style={{display: title == "" ? "none" : ""}}>
+        {(progress === 1 && title === "") && (
+          <h1>{t("pages.add.extractFailed")}</h1>
+        )}
+        <div style={{display: title === "" ? "none" : ""}}>
           <IonRow>
             <IonCol>
               <h1>{title}</h1>
@@ -179,6 +201,7 @@ function Add() {
               <IonButton
                 color="dark"
                 expand="full"
+                disabled={progress !== 1}
                 onClick={() => {
                   addNewWeRead({
                     title: sanitize(title),

@@ -33,6 +33,11 @@
         "getButton": "Get web data",
         "addButton": "Add",
         "clearButton": "Clear"
+      },
+      "extractFailed": "Failed to extract webpage text content.",
+      "failedToFetch": {
+        "header": "Failed to fetch",
+        "message": "Error fetching or parsing data. Please try again later."
       }
     },
     "delete": {

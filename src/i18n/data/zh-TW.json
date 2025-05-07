@@ -33,6 +33,11 @@
         "getButton": "讀取網頁資料",
         "addButton": "新增",
         "clearButton": "清除"
+      },
+      "extractFailed": "網頁文字內容擷取失敗",
+      "failedToFetch": {
+        "header": "擷取失敗",
+        "message": "取得網頁或資料解析時出現錯誤，請稍後再試。"
       }
     },
     "delete": {
