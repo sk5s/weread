@@ -24,7 +24,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/sk5s/weread">
-    <img src="https://weread.sk5s.cyou/weread-logo.png" alt="Logo" width="80" height="80">
+    <img src="https://weread.sk5s.com/weread-logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Weread</h3>
