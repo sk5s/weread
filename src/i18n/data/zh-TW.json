@@ -73,7 +73,13 @@
         "label": "刪除資料"
       },
       "about": {
-        "label": "關於 {{app}}"
+        "label": "關於 {{app}}",
+        "links": {
+          "landing": "專案網頁",
+          "git": "專案 Github",
+          "report": "回報問題",
+          "feature": "功能提議"
+        }
       }
     }
   }

@@ -73,7 +73,13 @@
         "label": "Delete data"
       },
       "about": {
-        "label": "About {{app}}"
+        "label": "About {{app}}",
+        "links": {
+          "landing": "Landing page",
+          "git": "Project Github",
+          "report": "Report Bug",
+          "feature": "Request feature"
+        }
       }
     }
   }
