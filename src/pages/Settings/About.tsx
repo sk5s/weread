@@ -70,11 +70,11 @@ export default function About() {
       <ul style={{ fontSize: "25px" }}>
         <li>
           <a
-            href="https://weread.sk5s.cyou/"
+            href="https://weread.sk5s.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Landing page
+            {t('pages.settings.about.links.landing')}
           </a>
         </li>
         <li>
@@ -83,7 +83,7 @@ export default function About() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Project Github
+            {t('pages.settings.about.links.git')}
           </a>
         </li>
         <li>
@@ -92,7 +92,7 @@ export default function About() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Report Bug
+            {t('pages.settings.about.links.report')}
           </a>
         </li>
         <li>
@@ -101,7 +101,7 @@ export default function About() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Request feature
+            {t('pages.settings.about.links.feature')}
           </a>
         </li>
       </ul>
