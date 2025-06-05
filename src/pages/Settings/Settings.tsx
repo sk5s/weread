@@ -126,7 +126,7 @@ export default function Settings() {
     <GeneralPage title={t("menu.settings")} menuId="menu-home">
       <IonList>
         <IModeToggle />
-        <StatusBarToggle />
+        {/* <StatusBarToggle /> */}
         <ChangeLang />
         <DeletePage />
         <DevModeToggle />
