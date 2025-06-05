@@ -13,40 +13,48 @@ export default function Vertical() {
   const [allPage,setAllPage] = useState(1)
   const [page,setPage] = useState(1)
   const updateAllPage = () => {
-    if (document.getElementById("vertical_readin") !== null){
-      if (document.getElementById("vertical_readin")?.offsetWidth !== null){
-        let newAllPage = parseInt((Math.round(document.getElementById('vertical_readin')!.scrollHeight / document.getElementById('vertical_readin')!.offsetHeight)).toString())
-        console.log("allpage: " +newAllPage)
-        if (isNaN(newAllPage)) return
-        setAllPage(newAllPage)
-      }
-    }
+    const container = document.getElementById("vertical_readin");
+    if (!container) return;
+    
+    // Calculate pages based on scroll height and container height
+    const totalHeight = container.scrollHeight;
+    const viewportHeight = container.offsetHeight;
+    const newAllPage = Math.ceil(totalHeight / viewportHeight);
+    
+    console.log("allpage: " + newAllPage);
+    if (isNaN(newAllPage) || newAllPage <= 0) return;
+    setAllPage(newAllPage);
   }
-  const turnToPage = (page) => {
-    console.log("newpage: "+page)
-    if (page <= 0) return;
-    let element = document.getElementById('vertical_readout');
-    if (element === null) return;
-    let theCSSprop = window
-      .getComputedStyle(element, null)
-      .getPropertyValue('height');
-    let readoutw = parseInt(theCSSprop.split('px')[0])
-    if (document.getElementById('vertical_readin') === null) return
-    document.getElementById('vertical_readin')!.scrollTop = (page-1) * readoutw;
+
+  const turnToPage = (pageNum: number) => {
+    console.log("newpage: " + pageNum);
+    if (pageNum <= 0 || pageNum > allPage) return;
+    
+    const container = document.getElementById('vertical_readin');
+    if (!container) return;
+    
+    const viewportHeight = container.offsetHeight;
+    const scrollPosition = (pageNum - 1) * viewportHeight;
+    
+    container.scrollTo({
+      top: scrollPosition
+    });
   }
+
   const nextpage = () => {
-    if (page === allPage) return
-    console.log("next", page+1)
-    if (page + 1 > allPage) setPage(allPage)
-    turnToPage(page + 1)
-    setPage((page:any) => page + 1)
+    if (page >= allPage) return;
+    const nextPage = page + 1;
+    console.log("next", nextPage);
+    turnToPage(nextPage);
+    setPage(nextPage);
   }
+
   const previouspage = () => {
-    if (page <= 1) return
-    console.log("previous", page-1)
-    if (page + 1 > allPage) setPage(allPage)
-    turnToPage(page - 1)
-    setPage((page:any) => page - 1)
+    if (page <= 1) return;
+    const prevPage = page - 1;
+    console.log("previous", prevPage);
+    turnToPage(prevPage);
+    setPage(prevPage);
   }
   const hideControl = () => {
     setControlShow(false)
@@ -56,22 +64,26 @@ export default function Vertical() {
   }
   const handlers = useSwipeable({
     onSwipedLeft: previouspage,
-    onSwipedRight: nextpage
+    onSwipedRight: nextpage,
+    preventScrollOnSwipe: true,
+    trackTouch: true,
+    trackMouse: true
   })
-  const handleDivClicked = async (e) => {
-    if (somethingInDivClicked) return
-    let fullWidth = document.getElementById('vertical_container')!.offsetWidth
-    let clickWidth = fullWidth / 4
-    if (e.clientX <= clickWidth){
-      nextpage()
-    } else if (e.clientX >= fullWidth - clickWidth){
-      previouspage()
-    } else if (!somethingInDivClicked){
-      if (controlShow){
-        hideControl()
-      } else {
-        showControl()
-      }
+  const handleDivClicked = async (e: React.MouseEvent) => {
+    if (somethingInDivClicked) return;
+    const container = document.getElementById('vertical_container');
+    if (!container) return;
+    
+    const fullWidth = container.offsetWidth;
+    const clickWidth = fullWidth / 4;
+    
+    // For vertical-rl layout, left side is next page, right side is previous page
+    if (e.clientX <= clickWidth) {
+      nextpage();
+    } else if (e.clientX >= fullWidth - clickWidth) {
+      previouspage();
+    } else if (!somethingInDivClicked) {
+      setControlShow(!controlShow);
     }
   }
   useEffect(() => {
@@ -85,7 +97,24 @@ export default function Vertical() {
       </div>
       <div id="vertical_container" style={{width: "100%", height: "100%", display: "flex", flexDirection: "column"}} {...handlers} onClick={(e) => handleDivClicked(e)}>
           <div id="vertical_readout" style={{position:"relative",overflow: "hidden", flex: 1, width: "100%"}}>
-            <div id="vertical_readin" style={{writingMode: "vertical-rl", touchAction: "none", position: "absolute", overflowY: "scroll", width: "100%", columnWidth: "500px",columnGap: article.columnGap*2+"px",paddingTop: article.columnGap+"px",paddingBottom: article.columnGap+"px",paddingLeft:"15px",paddingRight: "15px"}} >
+            <div id="vertical_readin" style={{
+              writingMode: "vertical-rl", 
+              touchAction: "none", 
+              position: "absolute", 
+              overflowY: "scroll", 
+              overflowX: "hidden",
+              width: "100%", 
+              height: "100%",
+              columnWidth: "500px",
+              columnGap: article.columnGap*2+"px",
+              paddingTop: article.columnGap+"px",
+              paddingBottom: article.columnGap+"px",
+              paddingLeft:"15px",
+              paddingRight: "15px",
+              columnFill: "auto",
+              breakInside: "avoid",
+              breakAfter: "column"
+            }} >
               <HtmlContent type="vertical" setSomethingInDivClicked={setSomethingInDivClicked} />
             </div>
           </div>
