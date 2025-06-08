@@ -1,0 +1,7 @@
+<i>Weread</i> è un'app per leggere dopo (read-it-later) i contenuti web, che permette di salvare articoli, post di blog e e altri contenuti web per una migliore esperienza di lettura.
+
+<i>Weread</i> è e sarà gratis e libera. Dato che è software libero e pubblicato sotto una licenza libera, puoi anche prendere e modificare il codice sorgente!
+
+* <b>Android:</b> app nativa pronta all'uso.
+* <b>Uso libero:</b> Quest'app è scaricabile e utilizzabile liberamente!
+* <b>Open source:</b> Dato che quest'app è pubblicata sotto licenza MIT, puoi modificarla!
