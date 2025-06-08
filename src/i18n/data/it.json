@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "Weread",
+    "versionStr": "Versione dell'app: {{versionName}}",
+    "slogan": "Weread - Leggilo dopo",
+    "navigate": {
+      "back": "Indietro"
+    },
+    "confirm": {
+      "yes": "Conferma",
+      "cancel": "Annulla"
+    }
+  },
+  "data": {
+    "noData": "Nessun dato",
+    "loading": "Caricamento",
+    "edit": {
+      "deleteAll": "Elimina tutto",
+      "deleteArticle": "Elimina articolo"
+    }
+  },
+  "menu": {
+    "home": "Principale",
+    "add": "Aggiungi",
+    "settings": "Impostazioni"
+  },
+  "pages": {
+    "add": {
+      "title": "Aggiungi articolo",
+      "warn": "Non aggiungere siti sconosciuti.",
+      "label": {
+        "inputUrl": "Inserisci URL",
+        "getButton": "Ottieni dati",
+        "addButton": "Aggiungi",
+        "clearButton": "Elimina"
+      },
+      "extractFailed": "Errore nell'estrarre il contenuto testo del sito web.",
+      "failedToFetch": {
+        "header": "Errore nei dati",
+        "message": "Errore nell'ottenimento o nell'analisi dei dati. Riprova successivamente."
+      }
+    },
+    "delete": {
+      "title": "Elimina tutti i dati"
+    },
+    "detail": {
+      "confirm": {
+        "title": "Apri link?",
+        "addUrl": "Aggiungi a Weread"
+      },
+      "control": {
+        "spaceBetweenPages": "Spazio tra le pagine"
+      }
+    },
+    "settings": {
+      "imode": {
+        "label": "Modalità io",
+        "description": "Attivando la modalità io puoi migliorare l'esperienza con l'app sui dispositivi e-paper."
+      },
+      "devMode": {
+        "label": "Modalità sviluppatore",
+        "description": "Attivando la modalità sviluppatore si può accedere ad alcune funzioni per sviluppatori."
+      },
+      "hideStatusBar": {
+        "label": "Nascondi barra di stato",
+        "description": "Nascondi la barra di stato quando stai usando l'app."
+      },
+      "changeLang": {
+        "label": "Cambia lingua",
+        "by": "Grazie a {{by}}"
+      },
+      "delete": {
+        "label": "Elimina i dati"
+      },
+      "about": {
+        "label": "Informazioni su {{app}}",
+        "links": {
+          "landing": "Pagina principale",
+          "git": "Progetto su Github",
+          "report": "Segnala un errore",
+          "feature": "Richiedi una funzione"
+        }
+      }
+    }
+  }
+}
