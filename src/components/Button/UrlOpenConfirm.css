@@ -1,7 +1,8 @@
 .nodrop {
   --ion-backdrop-color: transparent;
 }
-.nodrop .alert-wrapper{
+.nodrop .alert-wrapper,
+.nodrop .alert-wrapper.sc-ion-alert-md{
   border-color: var(--ion-color-light-contrast);
   border-style: solid;
   border-width: 1px;
