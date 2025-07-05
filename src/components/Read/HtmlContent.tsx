@@ -63,11 +63,14 @@ export default function HtmlContent({
     Array.from(document.getElementById("htmlContent_" + article.id + "_" + type).getElementsByTagName("a")).forEach((e) => {
       const baseUrl = new URL(article.url);
       const hrefValue = e.getAttribute("href");
+      console.log("hrefValue",hrefValue, location.origin)
       if (hrefValue.startsWith("/")) {
         const absoluteUrl = new URL(hrefValue, baseUrl.origin).href;
         e.setAttribute("href", absoluteUrl);
-      } else if (!hrefValue.startsWith("http://") && !hrefValue.  startsWith("https://")) {
-        const absoluteUrl = new URL(hrefValue, baseUrl.origin + baseUrl.pathname).href;
+      } else if (!hrefValue.startsWith("http://") && !hrefValue.  startsWith("https://") || new URL(hrefValue).origin === location.origin) {
+        console.log("Relative path ", baseUrl.origin)
+        const absoluteUrl = new URL(`${baseUrl.pathname.split("/").slice(0, -1).join("/")}${new URL(hrefValue).pathname}`, baseUrl.origin).href;
+        console.log(absoluteUrl)
         e.setAttribute("href", absoluteUrl);
       }
       let handler = (event) => {
