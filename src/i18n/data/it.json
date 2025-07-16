@@ -17,6 +17,9 @@
     "edit": {
       "deleteAll": "Elimina tutto",
       "deleteArticle": "Elimina articolo"
+    },
+    "sendintent": {
+      "unsupported": "Questo formato di condivisione non è attualmente supportato"
     }
   },
   "menu": {

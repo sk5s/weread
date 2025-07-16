@@ -17,6 +17,9 @@
     "edit": {
       "deleteAll": "刪除所有資料",
       "deleteArticle": "刪除文章"
+    },
+    "sendintent": {
+      "unsupported": "目前不支援此種分享格式"
     }
   },
   "menu": {

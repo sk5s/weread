@@ -17,6 +17,9 @@
     "edit": {
       "deleteAll": "Delete all",
       "deleteArticle": "Delete article"
+    },
+    "sendintent": {
+      "unsupported": "The sharing format is not currently supported"
     }
   },
   "menu": {

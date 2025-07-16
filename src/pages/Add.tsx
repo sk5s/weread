@@ -12,6 +12,7 @@ import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
 import sanitize from 'sanitize-filename';
 import GeneralPage from './Layout/GeneralPage';
 import { SettingsContext } from '../SettingsContext';
+import { validateUrl } from '../lib/utils';
 
 function Add() {
   const {t} = useTranslation()
@@ -20,16 +21,7 @@ function Add() {
   const context = useContext(SettingsContext);
   const [presentAlert] = useIonAlert();
   const useQuery = () => new URLSearchParams(location.search);
-  const validateUrl = (str:string) => {
-    let url;
-    try {
-      url = new URL(str);
-    } catch (_) {
-      return false;
-    }
-
-    return url.protocol === "http:" || url.protocol === "https:";
-  }
+  
   const query = useQuery();
   const [inputUrl, setInputUrl] = useState<string>(query.get("q"));
   const [valid, setValid] = useState<boolean>(validateUrl(query.get("q")));
