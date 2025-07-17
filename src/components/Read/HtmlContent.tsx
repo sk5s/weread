@@ -60,6 +60,7 @@ export default function HtmlContent({
     console.log("Refreshing a tags: htmlContent_" + article.id + "_" + type);
     console.log(document.getElementById("htmlContent_" + article.id + "_" + type).getElementsByTagName("a"));
     Array.from(document.getElementById("htmlContent_" + article.id + "_" + type).getElementsByTagName("a")).forEach((e) => {
+      if (article.url === null) return;
       const baseUrl = new URL(article.url);
       const hrefValue = e.getAttribute("href");
       if (hrefValue === null){

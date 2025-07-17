@@ -31,8 +31,16 @@ function Add() {
   const [content, setContent] = useState<any>()
 
   useEffect(() => {
-    setInputUrl(query.get("q"))
-    setValid(validateUrl(query.get("q")))
+    if (query.get("q")){
+      clearForm();
+      setInputUrl(query.get("q"))
+      setValid(validateUrl(query.get("q")))
+      setTimeout(() => {
+        if (validateUrl(query.get("q"))){
+          doGet(query.get("q"));
+        }
+      }, 100);
+    }
   }, [location])
 
   let readList = [];
@@ -57,7 +65,7 @@ function Add() {
             title: myarticle.title,
             length: myarticle.length,
             content: myarticle.content,
-            url: inputUrl
+            url
           })
           setProgress(1)
         }
