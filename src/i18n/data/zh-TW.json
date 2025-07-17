@@ -57,8 +57,8 @@
     },
     "settings": {
       "imode": {
-        "label": "I 模式",
-        "description": "啟用 I 模式可以改善電子紙設備上的使用體驗。"
+        "label": "Ink 模式",
+        "description": "啟用 Ink 模式可以改善電子紙設備上的使用體驗。"
       },
       "devMode": {
         "label": "開發者模式",

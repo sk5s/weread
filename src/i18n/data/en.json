@@ -57,8 +57,8 @@
     },
     "settings": {
       "imode": {
-        "label": "I mode",
-        "description": "Enable I mode can improve app experience on e paper device."
+        "label": "Ink mode",
+        "description": "Enable Ink mode can improve app experience on e paper device."
       },
       "devMode": {
         "label": "Dev mode",

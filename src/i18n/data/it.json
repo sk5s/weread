@@ -57,8 +57,8 @@
     },
     "settings": {
       "imode": {
-        "label": "Modalità io",
-        "description": "Attivando la modalità io puoi migliorare l'esperienza con l'app sui dispositivi e-paper."
+        "label": "Modalità inchiostro",
+        "description": "Attivando la Modalità inchiostro puoi migliorare l'esperienza con l'app sui dispositivi e-paper."
       },
       "devMode": {
         "label": "Modalità sviluppatore",
