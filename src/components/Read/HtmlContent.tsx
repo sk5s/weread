@@ -7,6 +7,7 @@ import { useHistory } from "react-router";
 
 import viewer from 'react-mobile-image-viewer';
 import 'react-mobile-image-viewer/lib/index.css';
+import { truncateURI } from "../../lib/utils";
 
 export default function HtmlContent({
   setSomethingInDivClicked,
@@ -24,27 +25,24 @@ export default function HtmlContent({
   const history = useHistory()
   const globalSettings = useContext(SettingsContext)
   const updateATag = () => {
-    console.log("update a tag")
     let handleClick = async (event,e) => {
       event.preventDefault()
       setSomethingInDivClicked(true)
-      console.log("clicked", e.href)
+      console.log("Clicked: ", e.href)
       presentAlert({
-        header: t("pages.detail.confirm.title", { url: e.href}),
-        message: e.href,
+        header: t("pages.detail.confirm.title"),
+        message: truncateURI(e.href),
         cssClass: globalSettings.imode ? "nodrop" : "",
         buttons: [{
           text: t("app.confirm.cancel"),
           role: 'cancel',
           handler: () => {
-            console.log("cancel")
             setSomethingInDivClicked(false)
           },
         },
         {
           text: t("pages.detail.confirm.addUrl"),
           handler: () => {
-            console.log("addUrl")
             history.push("/add?q="+e.href)
             setSomethingInDivClicked(false)
           },
@@ -53,22 +51,23 @@ export default function HtmlContent({
           text: t("app.confirm.yes"),
           role: 'confirm',
           handler: () => {
-            console.log("confirm")
             setSomethingInDivClicked(false)
             window.open(e.href,'_blank','noopener=yes,noreferrer=yes')
           },
         },],
       })
     }
+    console.log("Refreshing a tags: htmlContent_" + article.id + "_" + type);
+    console.log(document.getElementById("htmlContent_" + article.id + "_" + type).getElementsByTagName("a"));
     Array.from(document.getElementById("htmlContent_" + article.id + "_" + type).getElementsByTagName("a")).forEach((e) => {
       const baseUrl = new URL(article.url);
       const hrefValue = e.getAttribute("href");
-      console.log("hrefValue",hrefValue, location.origin)
-      if (hrefValue.startsWith("/")) {
+      if (hrefValue === null){
+        console.log("No href value found.");
+      } else if (hrefValue.startsWith("/")) {
         const absoluteUrl = new URL(hrefValue, baseUrl.origin).href;
         e.setAttribute("href", absoluteUrl);
-      } else if (!hrefValue.startsWith("http://") && !hrefValue.  startsWith("https://") || new URL(hrefValue).origin === location.origin) {
-        console.log("Relative path ", baseUrl.origin)
+      } else if (new URL(hrefValue).hostname === location.hostname || new URL(hrefValue).hostname === "localhost") {
         const absoluteUrl = new URL(`${baseUrl.pathname.split("/").slice(0, -1).join("/")}${new URL(hrefValue).pathname}`, baseUrl.origin).href;
         console.log(absoluteUrl)
         e.setAttribute("href", absoluteUrl);
@@ -76,7 +75,9 @@ export default function HtmlContent({
       let handler = (event) => {
         handleClick(event, e)
       }
-      e.onclick = handler
+      if (hrefValue !== null && hrefValue !== ""){
+        e.onclick = handler
+      }
     })
   }
   const updateImgTag = () => {

@@ -5,6 +5,7 @@ import { globeSharp } from "ionicons/icons"
 import "./UrlOpenConfirm.css"
 import { useContext } from "react";
 import {SettingsContext} from "../../SettingsContext"
+import { truncateURI } from "../../lib/utils";
 
 export default function UrlOpenConfirm({url}:{url: string;}) {
   const {t} = useTranslation()
@@ -13,8 +14,8 @@ export default function UrlOpenConfirm({url}:{url: string;}) {
   return (
     <IonButton color="dark" fill="clear" onClick={() => {
       presentAlert({
-        header: t("pages.detail.confirm.title", { url: url}),
-        message: url,
+        header: t("pages.detail.confirm.title"),
+        message: truncateURI(url),
         cssClass:  context.imode ? "nodrop" : "",
         buttons: [{
           text: t("app.confirm.cancel"),
