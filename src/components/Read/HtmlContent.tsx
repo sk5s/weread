@@ -61,23 +61,27 @@ export default function HtmlContent({
     console.log(document.getElementById("htmlContent_" + article.id + "_" + type).getElementsByTagName("a"));
     Array.from(document.getElementById("htmlContent_" + article.id + "_" + type).getElementsByTagName("a")).forEach((e) => {
       if (article.url === null) return;
-      const baseUrl = new URL(article.url);
-      const hrefValue = e.getAttribute("href");
-      if (hrefValue === null){
-        console.log("No href value found.");
-      } else if (hrefValue.startsWith("/")) {
-        const absoluteUrl = new URL(hrefValue, baseUrl.origin).href;
-        e.setAttribute("href", absoluteUrl);
-      } else if (new URL(hrefValue).hostname === location.hostname || new URL(hrefValue).hostname === "localhost") {
-        const absoluteUrl = new URL(`${baseUrl.pathname.split("/").slice(0, -1).join("/")}${new URL(hrefValue).pathname}`, baseUrl.origin).href;
-        console.log(absoluteUrl)
-        e.setAttribute("href", absoluteUrl);
-      }
-      let handler = (event) => {
-        handleClick(event, e)
-      }
-      if (hrefValue !== null && hrefValue !== ""){
-        e.onclick = handler
+      try {
+        const baseUrl = new URL(article.url);
+        const hrefValue = e.getAttribute("href");
+        if (hrefValue === null){
+          console.log("No href value found.");
+        } else if (hrefValue.startsWith("/")) {
+          const absoluteUrl = new URL(hrefValue, baseUrl.origin).href;
+          e.setAttribute("href", absoluteUrl);
+        } else if (new URL(hrefValue).hostname === location.hostname || new URL(hrefValue).hostname === "localhost") {
+          const absoluteUrl = new URL(`${baseUrl.pathname.split("/").slice(0, -1).join("/")}${new URL(hrefValue).pathname}`, baseUrl.origin).href;
+          console.log(absoluteUrl)
+          e.setAttribute("href", absoluteUrl);
+        }
+        let handler = (event) => {
+          handleClick(event, e)
+        }
+        if (hrefValue !== null && hrefValue !== ""){
+          e.onclick = handler
+        }
+      } catch (error) {
+        console.log(error, article.url);
       }
     })
   }
