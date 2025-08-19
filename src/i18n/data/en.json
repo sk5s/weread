@@ -33,7 +33,7 @@
       "warn": "Do not add unknown website.",
       "label": {
         "inputUrl": "Input Url",
-        "getButton": "Get web data",
+        "getButton": "Get website data",
         "addButton": "Add",
         "clearButton": "Clear"
       },
