@@ -85,10 +85,10 @@
         }
       },
       "theme": {
-        "label": "Theme",
-        "dark": "Dark",
-        "light": "Light",
-        "system": "System"
+        "label": "Tema",
+        "dark": "Scuro",
+        "light": "Chiaro",
+        "system": "Sistema"
       }
     }
   }
