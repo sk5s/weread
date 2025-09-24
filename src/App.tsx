@@ -38,6 +38,8 @@ import { useTranslation } from 'react-i18next';
 import Pages from './pages/Detail/Pages';
 import About from './pages/Settings/About';
 import { StatusBar } from '@capacitor/status-bar';
+import "./lib/Darkmode";
+import { getUserThemePreference } from './lib/Darkmode';
 
 const getConfig = () => {
   let config:any = {
@@ -55,7 +57,7 @@ function App() {
   const {t,i18n} = useTranslation()
   const [settings, setSettings] = useState<any>(defaultSettings)
   const getSettings = async () => {
-    const { value } = await Preferences.get({ key:  key.settings});
+    const { value } = await Preferences.get({ key: key.settings});
     if (value === null) {
       let newSaveDefault = {...defaultSettings}
       let deviceLanguageCode = "";
@@ -84,6 +86,8 @@ function App() {
       })
       i18n.changeLanguage(parsedSettings.lang)
     }
+
+    await getUserThemePreference();
   }
   const hideStatusBar = async () => {
     if (settings.hideStatusBar) {

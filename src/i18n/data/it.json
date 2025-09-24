@@ -83,6 +83,12 @@
           "report": "Segnala un errore",
           "feature": "Richiedi una funzione"
         }
+      },
+      "theme": {
+        "label": "Theme",
+        "dark": "Dark",
+        "light": "Light",
+        "system": "System"
       }
     }
   }

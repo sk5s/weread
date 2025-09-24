@@ -83,6 +83,12 @@
           "report": "回報問題",
           "feature": "功能提議"
         }
+      },
+      "theme": {
+        "label": "主題",
+        "dark": "深色",
+        "light": "淺色",
+        "system": "系統"
       }
     }
   }

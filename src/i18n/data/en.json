@@ -83,6 +83,12 @@
           "report": "Report Bug",
           "feature": "Request feature"
         }
+      },
+      "theme": {
+        "label": "Theme",
+        "dark": "Dark",
+        "light": "Light",
+        "system": "System"
       }
     }
   }

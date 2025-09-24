@@ -3,5 +3,6 @@
   "lang": "en",
   "devMode": false,
   "defaultReadView": "normal",
-  "hideStatusBar": false
+  "hideStatusBar": false,
+  "theme": "system"
 }
