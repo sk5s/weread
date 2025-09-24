@@ -86,7 +86,7 @@ export default function Settings() {
           </IonHeader>
           <IonContent className="ion-padding">
             <IonList>
-              <IonRadioGroup ref={input}>
+              <IonRadioGroup ref={input} value={context.lang}>
               {(() => {
                 let rows: any = [];
                 allLang.data.map((element) => {
@@ -95,6 +95,73 @@ export default function Settings() {
                       <IonRadio aria-label={element.name} justify="space-between" value={element.code}>
                         <h6>{element.name}</h6>
                         <small>{t("pages.settings.changeLang.by",{by : element.by})}</small>
+                      </IonRadio>
+                    </IonItem>
+                  );
+                });
+                return rows;
+              })()}
+              </IonRadioGroup>
+            </IonList>
+          </IonContent>
+        </IonModal>
+      </>
+    )
+  }
+
+  const ChangeTheme = () => {
+    const modal = useRef<HTMLIonModalElement>(null);
+    const input = useRef<any>(null);
+    const confirm = () => {
+      modal.current?.dismiss(input.current?.value, 'confirm');
+    }
+    const onWillDismiss = (ev) => {
+      if (ev.detail.role === 'confirm') {
+        console.log(ev.detail.data)
+        changeSetting("theme", ev.detail.data)
+      }
+    }
+
+    const themes = [
+      {
+        id: 'light',
+        label: t("pages.settings.theme.light"),
+      },
+      {
+        id: 'dark',
+        label: t("pages.settings.theme.dark"),
+      },
+      {
+        id: 'system',
+        label: t("pages.settings.theme.system"),
+      },
+    ]
+    return (
+      <>
+        <IonItem detail={true} id="open-theme-modal">
+          <IonLabel>{t("pages.settings.theme.label")}</IonLabel>
+        </IonItem>
+        <IonModal ref={modal} trigger="open-theme-modal" onWillDismiss={(ev) => onWillDismiss(ev)}>
+          <IonHeader className={context.imode ? "ion-no-border" : ""}>
+            <IonToolbar>
+              <IonTitle>{t("pages.settings.theme.label")}</IonTitle>
+              <IonButtons slot="end">
+                <IonButton strong={true} onClick={() => confirm()}>
+                  {t("app.confirm.yes")}
+                </IonButton>
+              </IonButtons>
+            </IonToolbar>
+          </IonHeader>
+          <IonContent className="ion-padding">
+            <IonList>
+              <IonRadioGroup ref={input} value={context.theme}>
+              {(() => {
+                let rows: any = [];
+                themes.map((element) => {
+                  rows.push(
+                    <IonItem key={element.id}>
+                      <IonRadio aria-label={element.label} justify="space-between" value={element.id}>
+                        <h6>{element.label}</h6>
                       </IonRadio>
                     </IonItem>
                   );
@@ -125,6 +192,7 @@ export default function Settings() {
   return (
     <GeneralPage title={t("menu.settings")} menuId="menu-home">
       <IonList>
+        <ChangeTheme />
         <IModeToggle />
         {/* <StatusBarToggle /> */}
         <ChangeLang />
