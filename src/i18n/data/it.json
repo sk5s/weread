@@ -9,6 +9,9 @@
     "confirm": {
       "yes": "Conferma",
       "cancel": "Annulla"
+    },
+    "copy": {
+      "success": "URL copiato negli appunti"
     }
   },
   "data": {
@@ -48,8 +51,10 @@
     },
     "detail": {
       "confirm": {
-        "title": "Apri link?",
-        "addUrl": "Aggiungi a Weread"
+        "title": "Link",
+        "addUrl": "Aggiungi a Weread",
+        "copyUrl": "Copia",
+        "openUrl": "Apri"
       },
       "control": {
         "spaceBetweenPages": "Spazio tra le pagine"

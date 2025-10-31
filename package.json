@@ -15,6 +15,7 @@
   "dependencies": {
     "@capacitor/android": "7.4.3",
     "@capacitor/app": "^7.0.0",
+    "@capacitor/clipboard": "^7.0.2",
     "@capacitor/core": "7.4.3",
     "@capacitor/device": "^7.0.0",
     "@capacitor/filesystem": "7.1.2",

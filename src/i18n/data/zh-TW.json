@@ -9,6 +9,9 @@
     "confirm": {
       "yes": "確定",
       "cancel": "取消"
+    },
+    "copy": {
+      "success": "已複製到剪貼簿"
     }
   },
   "data": {
@@ -48,8 +51,10 @@
     },
     "detail": {
       "confirm": {
-        "title": "確定開啟連結？",
-        "addUrl": "新增到 Weread"
+        "title": "連結",
+        "addUrl": "新增到 Weread",
+        "copyUrl": "複製",
+        "openUrl": "開啟"
       },
       "control": {
         "spaceBetweenPages": "頁面間距"

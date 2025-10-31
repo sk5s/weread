@@ -9,6 +9,9 @@
     "confirm": {
       "yes": "Confirm",
       "cancel": "Cancel"
+    },
+    "copy": {
+      "success": "Copied to clipboard"
     }
   },
   "data": {
@@ -48,8 +51,10 @@
     },
     "detail": {
       "confirm": {
-        "title": "Open link?",
-        "addUrl": "Add to Weread"
+        "title": "Link",
+        "addUrl": "Add to Weread",
+        "copyUrl": "Copy",
+        "openUrl": "Open"
       },
       "control": {
         "spaceBetweenPages": "Space between pages"
