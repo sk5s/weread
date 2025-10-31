@@ -13,7 +13,7 @@ export default function Normal() {
   const history = useHistory()
   return (
     <>
-      <div style={{margin: "15px"}}>
+      <div style={{margin: "15px", paddingBottom: "24px"}}>
         <h1 style={{fontWeight: "bold"}}>{article.title}</h1>
         <div style={{width: "100%", display: "flex", justifyContent: "right"}}>
           <IonButton color="dark" fill="clear" onClick={() => {

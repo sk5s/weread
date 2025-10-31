@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { DetailContext } from "../../pages/Detail/Context"
 import { useSwipeable } from "react-swipeable"
-import { IonRange } from "@ionic/react"
+import { IonPage, IonRange } from "@ionic/react"
 import { useTranslation } from "react-i18next"
 import HtmlContent from "./HtmlContent"
 
@@ -91,7 +91,7 @@ export default function Vertical() {
     setPage(1)
   },[article.html])
   return (
-    <>
+    <div style={{paddingTop: "var(--ion-safe-area-top, 0)", paddingBottom: "var(--ion-safe-area-bottom, 0)", width: "100%", height: "100%"}}>
       <div style={{position:"fixed",left: article.columnGap + "px"}}>
         <span>{page} / {allPage}</span>
       </div>
@@ -130,6 +130,6 @@ export default function Vertical() {
       </div>
         : <></>
       }
-    </>
+    </div>
   )
 }

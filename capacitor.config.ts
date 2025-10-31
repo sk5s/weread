@@ -11,9 +11,6 @@ const config: CapacitorConfig = {
     CapacitorHttp: {
       enabled: true,
     },
-    EdgeToEdge: {
-      backgroundColor: "#000000",
-    },
   },
 };
 
