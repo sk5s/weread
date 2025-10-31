@@ -46,8 +46,8 @@
         "message": "Error fetching or parsing data. Please try again later."
       }
     },
-    "delete": {
-      "title": "Delete all data"
+    "data": {
+      "title": "Data"
     },
     "detail": {
       "confirm": {
@@ -94,6 +94,9 @@
         "dark": "Dark",
         "light": "Light",
         "system": "System"
+      },
+      "data": {
+        "label": "Data"
       }
     }
   }

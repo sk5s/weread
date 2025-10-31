@@ -46,8 +46,8 @@
         "message": "Errore nell'ottenimento o nell'analisi dei dati. Riprova successivamente."
       }
     },
-    "delete": {
-      "title": "Elimina tutti i dati"
+    "data": {
+      "title": "Dati"
     },
     "detail": {
       "confirm": {
@@ -77,9 +77,6 @@
         "label": "Cambia lingua",
         "by": "Grazie a {{by}}"
       },
-      "delete": {
-        "label": "Elimina i dati"
-      },
       "about": {
         "label": "Informazioni su {{app}}",
         "links": {
@@ -94,6 +91,9 @@
         "dark": "Scuro",
         "light": "Chiaro",
         "system": "Sistema"
+      },
+      "data": {
+        "label": "Dati"
       }
     }
   }

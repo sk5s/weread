@@ -175,10 +175,10 @@ export default function Settings() {
       </>
     )
   }
-  const DeletePage = () => {
+  const DataPage = () => {
     return (
-      <IonItem detail={true} onClick={() => history.push("/delete")}>
-        <IonLabel>{t("pages.settings.delete.label")}</IonLabel>
+      <IonItem detail={true} onClick={() => history.push("/data")}>
+        <IonLabel>{t("pages.settings.data.label")}</IonLabel>
       </IonItem>
     )
   }
@@ -196,7 +196,7 @@ export default function Settings() {
         <IModeToggle />
         {/* <StatusBarToggle /> */}
         <ChangeLang />
-        <DeletePage />
+        <DataPage />
         <DevModeToggle />
         <InfoPage />
       </IonList>

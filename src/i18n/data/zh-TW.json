@@ -46,8 +46,8 @@
         "message": "取得網頁或資料解析時出現錯誤，請稍後再試。"
       }
     },
-    "delete": {
-      "title": "刪除所有資料"
+    "data": {
+      "title": "資料"
     },
     "detail": {
       "confirm": {
@@ -77,9 +77,6 @@
         "label": "切換語言",
         "by": "由 {{by}} 建立"
       },
-      "delete": {
-        "label": "刪除資料"
-      },
       "about": {
         "label": "關於 {{app}}",
         "links": {
@@ -94,6 +91,9 @@
         "dark": "深色",
         "light": "淺色",
         "system": "系統"
+      },
+      "data": {
+        "label": "資料"
       }
     }
   }

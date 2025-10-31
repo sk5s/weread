@@ -5,8 +5,10 @@ import Home from './pages/Home';
 import Add from './pages/Add'
 import MainMenu from './components/Menu/MainMenu';
 import Edit from './pages/Detail/Edit';
-import DeleteAll from './pages/Settings/DeleteAll';
 import Settings from './pages/Settings/Settings';
+import Pages from './pages/Detail/Pages';
+import About from './pages/Settings/About';
+import Data from './pages/Settings/Data';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -35,8 +37,6 @@ import { SettingsContext } from './SettingsContext';
 import { on } from './lib/Event';
 import { Device } from '@capacitor/device';
 import { useTranslation } from 'react-i18next';
-import Pages from './pages/Detail/Pages';
-import About from './pages/Settings/About';
 import { StatusBar } from '@capacitor/status-bar';
 import "./lib/Darkmode";
 import { getUserThemePreference } from './lib/Darkmode';
@@ -119,8 +119,8 @@ function App() {
             <Route exact path="/settings">
               <Settings />
             </Route>
-            <Route exact path="/delete">
-              <DeleteAll />
+            <Route exact path="/data">
+              <Data />
             </Route>
             <Route exact path="/about">
               <About />
