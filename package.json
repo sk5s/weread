@@ -13,6 +13,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@capacitor-community/text-to-speech": "^6.1.0",
     "@capacitor/android": "7.4.4",
     "@capacitor/app": "7.1.0",
     "@capacitor/clipboard": "^7.0.2",

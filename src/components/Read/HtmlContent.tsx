@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { DetailContext } from "../../pages/Detail/Context";
 import { useTranslation } from "react-i18next";
-import { useIonAlert, useIonToast } from "@ionic/react";
+import { useIonAlert, IonButton, useIonToast } from "@ionic/react";
 import { SettingsContext } from "../../SettingsContext";
 import { useHistory } from "react-router";
 import { Clipboard } from "@capacitor/clipboard";
+import { TextToSpeech } from '@capacitor-community/text-to-speech';
 
 import viewer from "react-mobile-image-viewer";
 import "react-mobile-image-viewer/lib/index.css";
@@ -26,6 +27,46 @@ export default function HtmlContent({
   const [presentToast] = useIonToast();
   const history = useHistory();
   const globalSettings = useContext(SettingsContext);
+  const [isTtsActive, setIsTtsActive] = useState(false);
+  const extractTextFromHTML = (html: string) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    return doc.body.textContent || '';
+  };
+  const startTts = async () => {
+    if (article.html) {
+      setIsTtsActive(true);
+      const text = extractTextFromHTML(article.html);
+      const chunks = text.split(/[\n.,!?;]+/);
+      for (let chunk of chunks) {
+        const trimmedChunk = chunk.trim();
+        if (!trimmedChunk) continue;
+        try {
+          await TextToSpeech.speak({
+            text: trimmedChunk,
+            lang: 'en-US',
+            rate: 1.0,
+            pitch: 1.0,
+            volume: 1.0,
+            category: 'ambient',
+            queueStrategy: 1
+          });
+        } catch (error) {
+          console.error('Error stopping TTS:', error);
+          break;
+        }
+      }
+    }
+    setIsTtsActive(false);
+  }
+  const stopTts = async () => {
+    try {
+      await TextToSpeech.stop()
+      setIsTtsActive(false);
+    } catch (error) {
+      console.error('Error stopping TTS:', error);
+    }
+  }
   const updateATag = () => {
     let handleClick = async (event, e) => {
       event.preventDefault();
@@ -135,6 +176,10 @@ export default function HtmlContent({
   }, [article.html]);
   return (
     <>
+      {isTtsActive
+      ? <IonButton color="dark" onClick={stopTts}>Stop Button</IonButton>
+      : <IonButton color="dark" onClick={startTts}>Start Button</IonButton>
+      }
       <div
         id={"htmlContent_" + article.id + "_" + type}
         className="html"
