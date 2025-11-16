@@ -26,7 +26,7 @@ workflows:
           npm run build
       - name: Cocoapods installation
         script: |
-          cd ios/App && rm ./Podfile.lock && pod install --repo-update
+          cd ios/App && pod install --repo-update
       - name: Update dependencies and copy web assets to native project
         script: |
           npx cap sync
