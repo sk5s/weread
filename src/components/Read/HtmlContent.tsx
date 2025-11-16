@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { DetailContext } from "../../pages/Detail/Context";
 import { useTranslation } from "react-i18next";
 import { useIonAlert, useIonToast } from "@ionic/react";
@@ -26,6 +26,7 @@ export default function HtmlContent({
   const [presentToast] = useIonToast();
   const history = useHistory();
   const globalSettings = useContext(SettingsContext);
+
   const updateATag = () => {
     let handleClick = async (event, e) => {
       event.preventDefault();
@@ -120,6 +121,10 @@ export default function HtmlContent({
         .getElementById("htmlContent_" + article.id + "_" + type)
         .getElementsByTagName("img"),
     ).forEach((e) => {
+      console.log("Refreshing an image height: ", e.hasAttribute('height'));
+      if (e.hasAttribute("height")) {
+        e.removeAttribute('height');
+      }
       e.onclick = () => {
         viewer({
           urls: [e.src],
@@ -134,13 +139,11 @@ export default function HtmlContent({
     updateImgTag();
   }, [article.html]);
   return (
-    <>
-      <div
-        id={"htmlContent_" + article.id + "_" + type}
-        className="html"
-        key={article.id}
-        dangerouslySetInnerHTML={{ __html: article.html }}
-      />
-    </>
+    <div
+      id={"htmlContent_" + article.id + "_" + type}
+      className="html"
+      key={article.id}
+      dangerouslySetInnerHTML={{ __html: article.html }}
+    />
   );
 }
