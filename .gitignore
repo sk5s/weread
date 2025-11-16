@@ -30,5 +30,6 @@ yarn-error.log*
 .eslintcache
 
 resources/android/**/*
+resources/ios/**/*
 
 weread.jks

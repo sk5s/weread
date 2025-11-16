@@ -20,6 +20,7 @@
     "@capacitor/core": "7.4.4",
     "@capacitor/device": "7.0.2",
     "@capacitor/filesystem": "7.1.4",
+    "@capacitor/ios": "7.4.4",
     "@capacitor/preferences": "7.0.2",
     "@capacitor/status-bar": "7.0.3",
     "@ionic/react": "8.7.9",
