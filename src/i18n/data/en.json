@@ -81,9 +81,6 @@
         "label": "Change Language",
         "by": "By {{by}}"
       },
-      "delete": {
-        "label": "Delete data"
-      },
       "about": {
         "label": "About {{app}}",
         "links": {
