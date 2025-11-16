@@ -42,7 +42,7 @@ export default function UrlOpenConfirm({ url }: { url: string }) {
               },
             },
             {
-              text: t("app.confirm.yes"),
+              text: t("pages.detail.confirm.openUrl"),
               role: "confirm",
               handler: () => {
                 console.log("confirm");
