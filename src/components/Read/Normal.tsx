@@ -20,6 +20,7 @@ export default function Normal() {
     presentAlert({
       header: t("pages.read.ttsError"),
       message: error,
+      cssClass: globalSettings.imode ? "nodrop" : "",
       buttons: [t("app.confirm.ok")],
     })
   })
