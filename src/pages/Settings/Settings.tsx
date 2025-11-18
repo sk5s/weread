@@ -1,19 +1,21 @@
 import { useTranslation } from "react-i18next";
 import GeneralPage from "../Layout/GeneralPage";
-import { IonButton, IonButtons, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonList, IonModal, IonRadio, IonRadioGroup, IonTitle, IonToggle, IonToolbar } from "@ionic/react";
-import { useContext, useRef } from "react";
+import { IonButton, IonButtons, IonContent, IonHeader, IonItem, IonLabel, IonList, IonModal, IonRadio, IonRadioGroup, IonTitle, IonToggle, IonToolbar } from "@ionic/react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { SettingsContext } from "../../SettingsContext";
 import { Preferences } from "@capacitor/preferences";
 import key from "../../lib/storage.json"
 import { trigger } from "../../lib/Event";
 import { useHistory } from "react-router";
 import allLang from '../../i18n/all.json'
+import { Device, DeviceInfo } from "@capacitor/device";
 
 export default function Settings() {
   const {t,i18n} = useTranslation()
   const history = useHistory()
   const context = useContext(SettingsContext)
-  const changeSetting = async (settingKey, settingValue) => {
+  const [deviceInfo, setDeviceInfo] = useState<DeviceInfo>(null);
+  const changeSetting = async (settingKey: string, settingValue: any) => {
     let newSettings = {...context}
     newSettings[settingKey] = settingValue
     await Preferences.set({
@@ -115,7 +117,7 @@ export default function Settings() {
     const confirm = () => {
       modal.current?.dismiss(input.current?.value, 'confirm');
     }
-    const onWillDismiss = (ev) => {
+    const onWillDismiss = (ev: any) => {
       if (ev.detail.role === 'confirm') {
         console.log(ev.detail.data)
         changeSetting("theme", ev.detail.data)
@@ -189,11 +191,22 @@ export default function Settings() {
       </IonItem>
     )
   }
+
+  useEffect(() => {
+    const getDeviceInfo = async () => {
+      const deviceInfoObject = await Device.getInfo();
+      setDeviceInfo(deviceInfoObject);
+    }
+    getDeviceInfo();
+  }, [])
+
   return (
     <GeneralPage title={t("menu.settings")} menuId="menu-home">
       <IonList>
         <ChangeTheme />
-        <IModeToggle />
+        {/* Disable inkMode toggle for iOS devices, since inkMode makes page return not functioning. */}
+        {deviceInfo?.platform === "android" ?
+        <IModeToggle /> : null}
         {/* <StatusBarToggle /> */}
         <ChangeLang />
         <DataPage />
