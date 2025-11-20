@@ -22,6 +22,31 @@
       "deleteAll": "刪除所有資料",
       "deleteArticle": "刪除文章"
     },
+    "export": {
+      "button": "匯出資料",
+      "exporting": "匯出中...",
+      "success": "成功匯出 {{count}} 篇文章",
+      "error": {
+        "header": "匯出失敗",
+        "message": "匯出資料失敗，請重試。"
+      },
+      "share": {
+        "button": "分享備份",
+        "title": "Weread 備份",
+        "text": "分享您的 Weread 備份檔案",
+        "dialog": "分享備份檔案",
+        "error": "分享備份檔案失敗"
+      }
+    },
+    "import": {
+      "button": "匯入資料",
+      "importing": "匯入中...",
+      "success": "成功匯入 {{count}} 篇文章",
+      "error": {
+        "header": "匯入失敗",
+        "message": "匯入資料失敗，請檢查檔案後重試。"
+      }
+    },
     "sendintent": {
       "unsupported": "目前不支援此種分享格式"
     }
