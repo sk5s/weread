@@ -10,6 +10,8 @@ import { SettingsContext } from '../../SettingsContext';
 import { parseManifest } from '../../lib/exportImportUtils';
 import { trigger } from '../../lib/Event';
 
+import './ImportData.css';
+
 export default function ImportData() {
   const { t } = useTranslation();
   const context = useContext(SettingsContext);
@@ -114,7 +116,7 @@ export default function ImportData() {
 
       setProgress(0.5);
 
-      // Read preferences data
+      // Read preferences data to get article count
       const preferencesContent = await Filesystem.readFile({
         path: `${baseDataPath}/preferences.json`,
         directory: Directory.Cache,
@@ -122,6 +124,53 @@ export default function ImportData() {
       });
 
       const importedPreferences = JSON.parse(preferencesContent.data as string);
+      const importedArticlesCount = importedPreferences.read?.length || 0;
+
+      // Show confirmation alert with metadata
+      const confirmed = await new Promise<boolean>((resolve) => {
+        const messageLines = [
+          t('data.import.confirm.message'),
+          '',
+          `${t('data.import.confirm.count')}: ${importedArticlesCount}`,
+          `${t('data.import.confirm.date')}: ${new Date(manifest.exportDate).toLocaleString()}`,
+          `${t('data.import.confirm.version')}: ${manifest.appVersion}`,
+        ];
+        
+        presentAlert({
+          header: t('data.import.confirm.header'),
+          message: messageLines.join('\n'),
+          cssClass: context.imode ? 'nodrop import-data-pre-wrap' : 'import-data-pre-wrap',
+          buttons: [
+            {
+              text: t('app.confirm.cancel'),
+              role: 'cancel',
+              handler: () => resolve(false),
+            },
+            {
+              text: t('data.import.confirm.proceed'),
+              role: 'confirm',
+              handler: () => resolve(true),
+            },
+          ],
+        });
+      });
+
+      if (!confirmed) {
+        console.log('[Import] User cancelled import');
+        setIsImporting(false);
+        setProgress(0);
+        
+        // Clean up extraction directory
+        await Filesystem.rmdir({
+          path: extractDir,
+          directory: Directory.Cache,
+          recursive: true,
+        });
+        
+        return;
+      }
+
+      setProgress(0.6);
 
       // Preserve current settings
       const currentSettingsData = await Preferences.get({ key: key.settings });
@@ -133,6 +182,7 @@ export default function ImportData() {
       const preservedSettings = {
         devMode: currentSettings.devMode,
         imode: currentSettings.imode,
+        lang: currentSettings.lang,
       };
 
       // Merge imported settings with preserved ones

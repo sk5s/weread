@@ -45,6 +45,14 @@
       "error": {
         "header": "Import Failed",
         "message": "Failed to import data. Please check the file and try again."
+      },
+      "confirm": {
+        "header": "Confirm Import",
+        "message": "This will replace all existing data with the backup.",
+        "count": "Backup contains",
+        "date": "Exported",
+        "version": "App version",
+        "proceed": "Import"
       }
     },
     "sendintent": {

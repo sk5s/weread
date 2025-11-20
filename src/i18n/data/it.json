@@ -45,6 +45,14 @@
       "error": {
         "header": "Importazione fallita",
         "message": "Impossibile importare i dati. Controlla il file e riprova."
+      },
+      "confirm": {
+        "header": "Conferma importazione",
+        "message": "Questo sostituirà tutti i dati esistenti con il backup.",
+        "count": "Il backup contiene",
+        "date": "Esportato",
+        "version": "Versione app",
+        "proceed": "Importa"
       }
     },
     "sendintent": {

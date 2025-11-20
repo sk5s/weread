@@ -45,6 +45,14 @@
       "error": {
         "header": "匯入失敗",
         "message": "匯入資料失敗，請檢查檔案後重試。"
+      },
+      "confirm": {
+        "header": "確認匯入",
+        "message": "這將會取代所有現有資料。",
+        "count": "備份包含",
+        "date": "匯出時間",
+        "version": "App 版本",
+        "proceed": "匯入"
       }
     },
     "sendintent": {
