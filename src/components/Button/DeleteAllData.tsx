@@ -51,6 +51,6 @@ export default function DeleteAllData() {
     trigger("weread:listChange")
   };
   return (
-    <IonButton color="dark" onClick={() => handleRemoveAll()}>{t("data.edit.deleteAll")}</IonButton>
+    <IonButton color="dark" expand="full" onClick={() => handleRemoveAll()}>{t("data.edit.deleteAll")}</IonButton>
   )
 }
