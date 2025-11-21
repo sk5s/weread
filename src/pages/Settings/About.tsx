@@ -3,11 +3,13 @@ import Childpage from "../Layout/ChildPage";
 import { IonChip, getPlatforms } from "@ionic/react";
 import { App } from "@capacitor/app"
 import { useEffect, useState } from "react";
+import { Device, DeviceInfo } from "@capacitor/device";
 import logo from "../../../resources/icon.png"
 
 export default function About() {
   const {t} = useTranslation()
   const [version, setVersion] = useState("")
+  const [deviceInfo, setDeviceInfo] = useState<DeviceInfo>(null);
   const getVersion = async () => {
     let { version } = await App.getInfo()
     console.log(version)
@@ -15,6 +17,11 @@ export default function About() {
   }
   useEffect(() => {
     getVersion()
+    const getDeviceInfo = async () => {
+      const deviceInfoObject = await Device.getInfo();
+      setDeviceInfo(deviceInfoObject);
+    }
+    getDeviceInfo();
   }, [])
   return (
     <Childpage title={t("pages.settings.about.label",{app: t("app.name")})}>
@@ -38,6 +45,8 @@ export default function About() {
             return platforms;
           })()}
         </p>
+        {/* Hide Android download badges on iOS */}
+        {deviceInfo?.platform !== "ios" ? (
         <div>
           <a
             rel="noreferrer"
@@ -62,6 +71,7 @@ export default function About() {
             />
           </a>
         </div>
+        ) : null}
       </div>
       {/* detail */}
       <p style={{ fontSize: "25px", marginLeft: "20px" }}>
