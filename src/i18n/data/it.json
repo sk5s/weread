@@ -22,6 +22,39 @@
       "deleteAll": "Elimina tutto",
       "deleteArticle": "Elimina articolo"
     },
+    "export": {
+      "button": "Esporta dati",
+      "exporting": "Esportazione...",
+      "success": "Esportati con successo {{count}} articoli",
+      "error": {
+        "header": "Esportazione fallita",
+        "message": "Impossibile esportare i dati. Riprova."
+      },
+      "share": {
+        "button": "Condividi backup",
+        "title": "Backup Weread",
+        "text": "Condividi il tuo file di backup Weread",
+        "dialog": "Condividi file di backup",
+        "error": "Impossibile condividere il file di backup"
+      }
+    },
+    "import": {
+      "button": "Importa dati",
+      "importing": "Importazione...",
+      "success": "Importati con successo {{count}} articoli",
+      "error": {
+        "header": "Importazione fallita",
+        "message": "Impossibile importare i dati. Controlla il file e riprova."
+      },
+      "confirm": {
+        "header": "Conferma importazione",
+        "message": "Questo sostituirà tutti i dati esistenti con il backup.",
+        "count": "Il backup contiene",
+        "date": "Esportato",
+        "version": "Versione app",
+        "proceed": "Importa"
+      }
+    },
     "sendintent": {
       "unsupported": "Questo formato di condivisione non è attualmente supportato"
     }
@@ -61,7 +94,6 @@
         "spaceBetweenPages": "Spazio tra le pagine"
       }
     },
-
     "read": {
       "ttsError": "Errore Text-to-Speech"
     },
