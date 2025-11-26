@@ -256,6 +256,14 @@ export default function ImportData() {
         value: JSON.stringify(mergedSettings),
       });
 
+      // Restore viewer settings if available
+      if (importedPreferences.viewer) {
+        await Preferences.set({
+          key: key.viewer,
+          value: JSON.stringify(importedPreferences.viewer),
+        });
+      }
+
       setProgress(1);
 
       // Clean up extraction directory

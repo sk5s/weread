@@ -13,9 +13,11 @@ import { truncateURI } from "../../lib/utils";
 export default function HtmlContent({
   setSomethingInDivClicked,
   type,
+  fontSize,
 }: {
   setSomethingInDivClicked?: any;
   type: "normal" | "vertical" | "horizontal";
+  fontSize?: number;
 }) {
   if (!setSomethingInDivClicked) {
     setSomethingInDivClicked = (e) => console.log(e);
@@ -126,11 +128,15 @@ export default function HtmlContent({
         e.removeAttribute('height');
       }
       e.onclick = () => {
+        setSomethingInDivClicked(true);
         viewer({
           urls: [e.src],
           zIndex: 9999,
           doubleTap: true,
         });
+        setTimeout(() => {
+          setSomethingInDivClicked(false)
+        }, 100)
       };
     });
   };
@@ -139,11 +145,43 @@ export default function HtmlContent({
     updateImgTag();
   }, [article.html]);
   return (
-    <div
-      id={"htmlContent_" + article.id + "_" + type}
-      className="html"
-      key={article.id}
-      dangerouslySetInnerHTML={{ __html: article.html }}
-    />
+    <>
+      {fontSize && (
+        <style>
+          {`
+            #htmlContent_${article.id}_${type} {
+              font-size: ${fontSize}px;
+            }
+            #htmlContent_${article.id}_${type} p {
+              font-size: ${fontSize}px;
+            }
+            #htmlContent_${article.id}_${type} h1 {
+              font-size: ${fontSize * 2}px;
+            }
+            #htmlContent_${article.id}_${type} h2 {
+              font-size: ${fontSize * 1.5}px;
+            }
+            #htmlContent_${article.id}_${type} h3 {
+              font-size: ${fontSize * 1.3}px;
+            }
+            #htmlContent_${article.id}_${type} h4 {
+              font-size: ${fontSize * 1.1}px;
+            }
+            #htmlContent_${article.id}_${type} h5 {
+              font-size: ${fontSize}px;
+            }
+            #htmlContent_${article.id}_${type} h6 {
+              font-size: ${fontSize * 0.9}px;
+            }
+          `}
+        </style>
+      )}
+      <div
+        id={"htmlContent_" + article.id + "_" + type}
+        className="html"
+        key={article.id}
+        dangerouslySetInnerHTML={{ __html: article.html }}
+      />
+    </>
   );
 }

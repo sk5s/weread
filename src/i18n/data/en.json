@@ -92,6 +92,10 @@
       },
       "control": {
         "spaceBetweenPages": "Space between pages"
+      },
+      "toolbar": {
+        "fontSize": "Font Size",
+        "page": "Page"
       }
     },
     "read": {
@@ -131,6 +135,14 @@
       },
       "data": {
         "label": "Data"
+      },
+      "font": {
+        "label": "Font",
+        "title": "Font Settings",
+        "defaultFontSize": {
+          "label": "Default Font Size",
+          "description": "Set the default font size for reading articles."
+        }
       }
     }
   }

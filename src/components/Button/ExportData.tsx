@@ -57,10 +57,12 @@ export default function ExportData() {
       // Get preferences data
       const readData = await Preferences.get({ key: key.read });
       const settingsData = await Preferences.get({ key: key.settings });
+      const viewerData = await Preferences.get({ key: key.viewer });
       
       const preferencesData = {
         read: readData.value ? JSON.parse(readData.value) : [],
         settings: settingsData.value ? JSON.parse(settingsData.value) : {},
+        viewer: viewerData.value ? JSON.parse(viewerData.value) : {},
       };
       
       // Save preferences to temp directory

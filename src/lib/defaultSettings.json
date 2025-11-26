@@ -4,5 +4,6 @@
   "devMode": false,
   "defaultReadView": "normal",
   "hideStatusBar": false,
-  "theme": "system"
+  "theme": "system",
+  "defaultFontSize": 24
 }

@@ -1,17 +1,21 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { DetailContext } from "../../pages/Detail/Context"
 import { useSwipeable } from "react-swipeable"
-import { IonPage, IonRange } from "@ionic/react"
 import { useTranslation } from "react-i18next"
 import HtmlContent from "./HtmlContent"
+import { SettingsContext } from "../../SettingsContext"
+import ReadingToolbars from "./ReadingToolbars"
+import { useViewerContext } from "../../contexts/ViewerContext"
 
 export default function Vertical() {
   const article = useContext<any>(DetailContext)
+  const settings = useContext(SettingsContext)
   const {t} = useTranslation()
   const [somethingInDivClicked,setSomethingInDivClicked] = useState(false)
   const [controlShow, setControlShow] = useState(false)
   const [allPage,setAllPage] = useState(1)
   const [page,setPage] = useState(1)
+  const { fontSize, saveFontSize } = useViewerContext()
   const updateAllPage = () => {
     const container = document.getElementById("vertical_readin");
     if (!container) return;
@@ -90,11 +94,24 @@ export default function Vertical() {
     updateAllPage()
     setPage(1)
   },[article.html])
+  
+
   return (
     <div style={{paddingTop: "var(--ion-safe-area-top, 0)", paddingBottom: "var(--ion-safe-area-bottom, 0)", width: "100%", height: "100%"}}>
-      <div style={{position:"fixed",left: article.columnGap + "px"}}>
-        <span>{page} / {allPage}</span>
-      </div>
+      <ReadingToolbars
+        controlShow={controlShow}
+        fontSize={fontSize}
+        page={page}
+        allPage={allPage}
+        triggerId="font-settings-trigger-vertical"
+        onFontSizeChange={saveFontSize}
+        onPageChange={(newPage) => {
+          setPage(newPage);
+          turnToPage(newPage);
+        }}
+        direction="rtl"
+      />
+      
       <div id="vertical_container" style={{width: "100%", height: "100%", display: "flex", flexDirection: "column"}} {...handlers} onClick={(e) => handleDivClicked(e)}>
           <div id="vertical_readout" style={{position:"relative",overflow: "hidden", flex: 1, width: "100%"}}>
             <div id="vertical_readin" style={{
@@ -115,21 +132,10 @@ export default function Vertical() {
               breakInside: "avoid",
               breakAfter: "column"
             }} >
-              <HtmlContent type="vertical" setSomethingInDivClicked={setSomethingInDivClicked} />
+              <HtmlContent type="vertical" setSomethingInDivClicked={setSomethingInDivClicked} fontSize={fontSize} />
             </div>
           </div>
       </div>
-      {
-        false ?
-      <div style={{position:"fixed", bottom: "0px", width:"100%", minHeight: "150px", backgroundColor: "var(--background)", borderTop: "1px solid var(--ion-color-light-contrast)"}}>
-        <div style={{padding: "15px"}}>
-          <IonRange labelPlacement="start" ticks={true} snaps={true} min={0} max={3} onIonChange={({ detail }) => console.log(detail.value)}>
-            <div slot="label">{t("pages.detail.control.spaceBetweenPages")}</div>
-          </IonRange>
-        </div>
-      </div>
-        : <></>
-      }
     </div>
   )
 }

@@ -1,5 +1,6 @@
 .nodrop {
   --ion-backdrop-color: transparent;
+  --box-shadow: none;
 }
 .nodrop .alert-wrapper,
 .nodrop .alert-wrapper.sc-ion-alert-md{
@@ -8,4 +9,11 @@
   border-width: 1px;
   box-shadow: none;
   -webkit-box-shadow: none;
+}
+
+.nodrop .ion-delegate-host{
+  border-radius: 5px;
+  border-color: var(--ion-color-light-contrast);
+  border-style: solid;
+  border-width: 1px;
 }

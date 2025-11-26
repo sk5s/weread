@@ -9,6 +9,7 @@ import Settings from './pages/Settings/Settings';
 import Pages from './pages/Detail/Pages';
 import About from './pages/Settings/About';
 import Data from './pages/Settings/Data';
+import Font from './pages/Settings/Font';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -40,6 +41,8 @@ import { useTranslation } from 'react-i18next';
 import { StatusBar } from '@capacitor/status-bar';
 import "./lib/Darkmode";
 import { getUserThemePreference } from './lib/Darkmode';
+
+import "./imode.css";
 
 const getConfig = () => {
   let config:any = {
@@ -124,6 +127,9 @@ function App() {
             </Route>
             <Route exact path="/about">
               <About />
+            </Route>
+            <Route exact path="/font">
+              <Font />
             </Route>
             {/* dynamic */}
             <Route path="/read/:view/:id" component={Pages} />

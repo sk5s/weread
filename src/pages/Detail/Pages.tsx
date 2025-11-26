@@ -10,6 +10,7 @@ import CleanPage from "../Layout/CleanPage"
 import Horizontal from "../../components/Read/Horizontal"
 import Normal from "../../components/Read/Normal"
 import Vertical from "../../components/Read/Vertical"
+import { ViewerProvider } from "../../contexts/ViewerContext"
 import "./Detail.css"
 
 export default function Pages() {
@@ -70,9 +71,11 @@ export default function Pages() {
   return (
     <CleanPage back={params.view === "normal"} title={articleData.title}>
       <DetailContext.Provider value={articleData}>
-        {params.view === "normal" ? <Normal /> : <></>}
-        {params.view === "horizontal" ? <Horizontal /> : <></>}
-        {params.view === "vertical" ? <Vertical /> : <></>}
+        <ViewerProvider>
+          {params.view === "normal" ? <Normal /> : null}
+          {params.view === "horizontal" ? <Horizontal /> : null}
+          {params.view === "vertical" ? <Vertical /> : null}
+        </ViewerProvider>
       </DetailContext.Provider>
     </CleanPage>
   )
