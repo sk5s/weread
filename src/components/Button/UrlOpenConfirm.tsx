@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { globeSharp } from "ionicons/icons";
 import { Clipboard } from "@capacitor/clipboard";
 
-import "./UrlOpenConfirm.css";
 import { useContext } from "react";
 import { SettingsContext } from "../../SettingsContext";
 import { truncateURI } from "../../lib/utils";

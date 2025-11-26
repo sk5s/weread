@@ -24,6 +24,18 @@ export default function DeleteArticle({id}:{id:string}) {
       directory: Directory.Data,
       recursive: true
     })
+    
+    // Remove viewer settings for this article
+    const viewerData = await Preferences.get({ key: key.viewer });
+    if (viewerData.value) {
+      let viewerSettings = JSON.parse(viewerData.value);
+      delete viewerSettings[id];
+      await Preferences.set({
+        key: key.viewer,
+        value: JSON.stringify(viewerSettings),
+      });
+    }
+    
     let content = JSON.stringify(readData);
     await Preferences.set({
       key: key.read,

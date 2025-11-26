@@ -92,6 +92,10 @@
       },
       "control": {
         "spaceBetweenPages": "Spazio tra le pagine"
+      },
+      "toolbar": {
+        "fontSize": "Dimensione carattere",
+        "page": "Pagina"
       }
     },
     "read": {
@@ -131,6 +135,14 @@
       },
       "data": {
         "label": "Dati"
+      },
+      "font": {
+        "label": "Carattere",
+        "title": "Impostazioni carattere",
+        "defaultFontSize": {
+          "label": "Dimensione carattere predefinita",
+          "description": "Imposta la dimensione del carattere predefinita per la lettura degli articoli."
+        }
       }
     }
   }

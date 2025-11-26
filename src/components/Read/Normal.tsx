@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { DetailContext } from "../../pages/Detail/Context"
 import { IonButton, IonIcon, useIonAlert } from "@ionic/react"
 import { pencilSharp, swapHorizontalSharp, swapVerticalSharp, volumeHighSharp, stopCircleSharp } from "ionicons/icons"
@@ -8,6 +8,8 @@ import HtmlContent from "./HtmlContent"
 import { SettingsContext } from "../../SettingsContext"
 import { useTts } from "./useTts"
 import { useTranslation } from "react-i18next"
+import ReadingSettingsButton from "./ReadingSettingsButton"
+import { useViewerContext } from "../../contexts/ViewerContext"
 
 export default function Normal() {
   const globalSettings = useContext(SettingsContext)
@@ -15,6 +17,7 @@ export default function Normal() {
   const history = useHistory()
   const { t } = useTranslation()
   const [presentAlert] = useIonAlert()
+  const { fontSize, saveFontSize, loadFontSize } = useViewerContext()
 
   const { isTtsActive, startTts, stopTts } = useTts((error) => {
     presentAlert({
@@ -67,8 +70,13 @@ export default function Normal() {
             <IonIcon slot="icon-only" icon={pencilSharp}></IonIcon>
           </IonButton>
           <UrlOpenConfirm url={article.url} />
+          <ReadingSettingsButton 
+            fontSize={fontSize}
+            triggerId="font-settings-trigger-normal"
+            onFontSizeChange={saveFontSize}
+          />
         </div>
-        <HtmlContent type="normal" />
+        <HtmlContent type="normal" fontSize={fontSize} />
       </div>
     </>
   )

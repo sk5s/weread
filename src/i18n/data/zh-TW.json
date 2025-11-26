@@ -92,6 +92,10 @@
       },
       "control": {
         "spaceBetweenPages": "頁面間距"
+      },
+      "toolbar": {
+        "fontSize": "字體大小",
+        "page": "頁面"
       }
     },
     "read": {
@@ -131,6 +135,14 @@
       },
       "data": {
         "label": "資料"
+      },
+      "font": {
+        "label": "字體",
+        "title": "字體設定",
+        "defaultFontSize": {
+          "label": "預設字體大小",
+          "description": "設定閱讀文章時的預設字體大小。"
+        }
       }
     }
   }

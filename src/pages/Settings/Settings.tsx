@@ -191,6 +191,13 @@ export default function Settings() {
       </IonItem>
     )
   }
+  const FontPage = () => {
+    return (
+      <IonItem detail={true} onClick={() => history.push("/font")}>
+        <IonLabel>{t("pages.settings.font.label")}</IonLabel>
+      </IonItem>
+    )
+  }
 
   useEffect(() => {
     const getDeviceInfo = async () => {
@@ -209,6 +216,7 @@ export default function Settings() {
         <IModeToggle /> : null}
         {/* <StatusBarToggle /> */}
         <ChangeLang />
+        <FontPage />
         <DataPage />
         <DevModeToggle />
         <InfoPage />
