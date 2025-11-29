@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TextToSpeech } from "@capacitor-community/text-to-speech";
+import { SettingsContext } from "../../SettingsContext";
 
 export const useTts = (onError?: (error: string) => void) => {
+  const context = useContext(SettingsContext);
   const [isTtsActive, setIsTtsActive] = useState(false);
 
   const extractTextFromHTML = (html: string) => {
@@ -21,8 +23,8 @@ export const useTts = (onError?: (error: string) => void) => {
         try {
           await TextToSpeech.speak({
             text: trimmedChunk,
-            lang: "en-US",
-            rate: 1.0,
+            lang: context.speakLang || "en-US",
+            rate: context.speakRate || 1.0,
             pitch: 1.0,
             volume: 1.0,
             category: "ambient",
@@ -52,10 +54,25 @@ export const useTts = (onError?: (error: string) => void) => {
     }
   };
 
+  const [isAvailable, setIsAvailable] = useState(true);
+
+  useEffect(() => {
+    const check = async () => {
+        try {
+            const langs = await TextToSpeech.getSupportedLanguages();
+            if (langs.languages.length === 0) setIsAvailable(false);
+        } catch (e) {
+            setIsAvailable(false);
+        }
+    }
+    check();
+  }, [])
+
   return {
     isTtsActive,
     setIsTtsActive,
     startTts,
     stopTts,
+    isAvailable
   };
 };

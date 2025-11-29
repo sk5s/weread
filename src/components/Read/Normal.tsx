@@ -19,7 +19,7 @@ export default function Normal() {
   const [presentAlert] = useIonAlert()
   const { fontSize, saveFontSize, loadFontSize } = useViewerContext()
 
-  const { isTtsActive, startTts, stopTts } = useTts((error) => {
+  const { isTtsActive, startTts, stopTts, isAvailable } = useTts((error) => {
     presentAlert({
       header: t("pages.read.ttsError"),
       message: error,
@@ -37,13 +37,15 @@ export default function Normal() {
             globalSettings.devMode ?
             <>
               {
-                isTtsActive
-                ? <IonButton color="dark" fill="clear" onClick={() => stopTts()}>
-                    <IonIcon slot="icon-only" icon={stopCircleSharp}></IonIcon>
-                  </IonButton>
-                : <IonButton color="dark" fill="clear" onClick={() => startTts(article.html)}>
-                    <IonIcon slot="icon-only" icon={volumeHighSharp}></IonIcon>
-                  </IonButton>
+                isAvailable ? (
+                    isTtsActive
+                    ? <IonButton color="dark" fill="clear" onClick={() => stopTts()}>
+                        <IonIcon slot="icon-only" icon={stopCircleSharp}></IonIcon>
+                    </IonButton>
+                    : <IonButton color="dark" fill="clear" onClick={() => startTts(article.html)}>
+                        <IonIcon slot="icon-only" icon={volumeHighSharp}></IonIcon>
+                    </IonButton>
+                ) : null
               }
             </>
             :null

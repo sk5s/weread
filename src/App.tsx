@@ -10,6 +10,7 @@ import Pages from './pages/Detail/Pages';
 import About from './pages/Settings/About';
 import Data from './pages/Settings/Data';
 import Font from './pages/Settings/Font';
+import Speak from './pages/Settings/Speak';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -130,6 +131,9 @@ function App() {
             </Route>
             <Route exact path="/font">
               <Font />
+            </Route>
+            <Route exact path="/speak">
+              <Speak />
             </Route>
             {/* dynamic */}
             <Route path="/read/:view/:id" component={Pages} />

@@ -143,6 +143,13 @@
           "label": "Default Font Size",
           "description": "Set the default font size for reading articles."
         }
+      },
+      "speak": {
+        "label": "Speak",
+        "title": "Speak Settings",
+        "speed": "Speed",
+        "language": "Language",
+        "unavailable": "Text-to-Speech is not available on this device."
       }
     }
   }

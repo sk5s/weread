@@ -143,6 +143,13 @@
           "label": "預設字體大小",
           "description": "設定閱讀文章時的預設字體大小。"
         }
+      },
+      "speak": {
+        "label": "朗讀",
+        "title": "朗讀設定",
+        "speed": "語速",
+        "language": "語言",
+        "unavailable": "此裝置不支援語音朗讀功能。"
       }
     }
   }

@@ -5,5 +5,8 @@
   "defaultReadView": "normal",
   "hideStatusBar": false,
   "theme": "system",
-  "defaultFontSize": 24
+  "defaultFontSize": 24,
+  "speakLang": "en-US",
+  "speakRate": 1.0,
+  "recentSpeakLangs": []
 }

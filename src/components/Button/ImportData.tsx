@@ -183,6 +183,9 @@ export default function ImportData() {
         devMode: currentSettings.devMode,
         imode: currentSettings.imode,
         lang: currentSettings.lang,
+        speakLang: currentSettings.speakLang,
+        speakRate: currentSettings.speakRate,
+        recentSpeakLangs: currentSettings.recentSpeakLangs,
       };
 
       // Merge imported settings with preserved ones

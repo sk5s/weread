@@ -9,6 +9,7 @@ import { trigger } from "../../lib/Event";
 import { useHistory } from "react-router";
 import allLang from '../../i18n/all.json'
 import { Device, DeviceInfo } from "@capacitor/device";
+import { TextToSpeech } from "@capacitor-community/text-to-speech";
 
 export default function Settings() {
   const {t,i18n} = useTranslation()
@@ -177,6 +178,28 @@ export default function Settings() {
       </>
     )
   }
+  const SpeakPage = () => {
+    const [isAvailable, setIsAvailable] = useState(true);
+    useEffect(() => {
+        const check = async () => {
+            try {
+                const langs = await TextToSpeech.getSupportedLanguages();
+                if (langs.languages.length === 0) setIsAvailable(false);
+            } catch (e) {
+                setIsAvailable(false);
+            }
+        }
+        check();
+    }, [])
+    
+    if (!isAvailable) return null;
+
+    return (
+      <IonItem detail={true} onClick={() => history.push("/speak")}>
+        <IonLabel>{t("pages.settings.speak.label")}</IonLabel>
+      </IonItem>
+    )
+  }
   const DataPage = () => {
     return (
       <IonItem detail={true} onClick={() => history.push("/data")}>
@@ -217,6 +240,7 @@ export default function Settings() {
         {/* <StatusBarToggle /> */}
         <ChangeLang />
         <FontPage />
+        <SpeakPage />
         <DataPage />
         <DevModeToggle />
         <InfoPage />
