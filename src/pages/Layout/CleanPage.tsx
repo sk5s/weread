@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import BackToolbar from "../../components/Menu/BackToolbar";
 
 export default function CleanPage({ children, back, title }) {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   return (
     <>
       <IonPage>

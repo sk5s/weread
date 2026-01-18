@@ -240,7 +240,7 @@ export default function Settings() {
         {/* <StatusBarToggle /> */}
         <ChangeLang />
         <FontPage />
-        <SpeakPage />
+        {context.devMode && <SpeakPage />}
         <DataPage />
         <DevModeToggle />
         <InfoPage />

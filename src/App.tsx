@@ -44,13 +44,14 @@ import "./lib/Darkmode";
 import { getUserThemePreference } from './lib/Darkmode';
 
 import "./imode.css";
+import "./safearea.css";
 
 const getConfig = () => {
-  let config:any = {
+  let config: any = {
     hardwareBackButton: true,
     animated: !defaultSettings.imode
   };
-  
+
   return config;
 };
 
@@ -58,12 +59,12 @@ setupIonicReact(getConfig());
 
 
 function App() {
-  const {t,i18n} = useTranslation()
+  const { t, i18n } = useTranslation()
   const [settings, setSettings] = useState<any>(defaultSettings)
   const getSettings = async () => {
-    const { value } = await Preferences.get({ key: key.settings});
+    const { value } = await Preferences.get({ key: key.settings });
     if (value === null) {
-      let newSaveDefault = {...defaultSettings}
+      let newSaveDefault = { ...defaultSettings }
       let deviceLanguageCode = "";
       let deviceLanguageCodeObject = await Device.getLanguageCode();
       deviceLanguageCode = deviceLanguageCodeObject.value

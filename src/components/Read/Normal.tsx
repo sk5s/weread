@@ -30,49 +30,49 @@ export default function Normal() {
 
   return (
     <>
-      <div style={{margin: "15px", paddingBottom: "24px"}}>
-        <h1 style={{fontWeight: "bold"}}>{article.title}</h1>
-        <div style={{width: "100%", display: "flex", justifyContent: "right"}}>
+      <div style={{ margin: "15px", paddingBottom: "24px" }}>
+        <h1 style={{ fontWeight: "bold" }}>{article.title}</h1>
+        <div style={{ width: "100%", display: "flex", justifyContent: "right" }}>
           {
             globalSettings.devMode ?
-            <>
-              {
-                isAvailable ? (
+              <>
+                {
+                  isAvailable ? (
                     isTtsActive
-                    ? <IonButton color="dark" fill="clear" onClick={() => stopTts()}>
+                      ? <IonButton color="dark" fill="clear" onClick={() => stopTts()}>
                         <IonIcon slot="icon-only" icon={stopCircleSharp}></IonIcon>
-                    </IonButton>
-                    : <IonButton color="dark" fill="clear" onClick={() => startTts(article.html)}>
+                      </IonButton>
+                      : <IonButton color="dark" fill="clear" onClick={() => startTts(article.html)}>
                         <IonIcon slot="icon-only" icon={volumeHighSharp}></IonIcon>
-                    </IonButton>
-                ) : null
-              }
-            </>
-            :null
+                      </IonButton>
+                  ) : null
+                }
+              </>
+              : null
           }
           <IonButton color="dark" fill="clear" onClick={() => {
-            history.push("/read/horizontal/"+article.id)
+            history.push("/read/horizontal/" + article.id)
           }}>
             <IonIcon slot="icon-only" icon={swapHorizontalSharp}></IonIcon>
           </IonButton>
 
           {
             globalSettings.devMode ?
-            <IonButton color="dark" fill="clear" onClick={() => {
-              history.push("/read/vertical/"+article.id)
-            }}>
-              <IonIcon slot="icon-only" icon={swapVerticalSharp}></IonIcon>
-            </IonButton>
-            :<></>
+              <IonButton color="dark" fill="clear" onClick={() => {
+                history.push("/read/vertical/" + article.id)
+              }}>
+                <IonIcon slot="icon-only" icon={swapVerticalSharp}></IonIcon>
+              </IonButton>
+              : <></>
           }
 
           <IonButton color="dark" fill="clear" onClick={() => {
-            history.push("/edit/"+article.id)
+            history.push("/edit/" + article.id)
           }}>
             <IonIcon slot="icon-only" icon={pencilSharp}></IonIcon>
           </IonButton>
           <UrlOpenConfirm url={article.url} />
-          <ReadingSettingsButton 
+          <ReadingSettingsButton
             fontSize={fontSize}
             triggerId="font-settings-trigger-normal"
             onFontSizeChange={saveFontSize}

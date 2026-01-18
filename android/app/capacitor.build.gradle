@@ -19,7 +19,7 @@ dependencies {
     implementation project(':capacitor-status-bar')
     implementation project(':capawesome-capacitor-file-picker')
     implementation project(':capgo-capacitor-zip')
-    implementation project(':send-intent')
+    implementation project(':mindlib-capacitor-send-intent')
 
 }
 

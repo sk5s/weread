@@ -32,5 +32,5 @@ project(':capawesome-capacitor-file-picker').projectDir = new File('../node_modu
 include ':capgo-capacitor-zip'
 project(':capgo-capacitor-zip').projectDir = new File('../node_modules/@capgo/capacitor-zip/android')
 
-include ':send-intent'
-project(':send-intent').projectDir = new File('../node_modules/send-intent/android')
+include ':mindlib-capacitor-send-intent'
+project(':mindlib-capacitor-send-intent').projectDir = new File('../node_modules/@mindlib-capacitor/send-intent/android')
