@@ -40,7 +40,7 @@ export default function MainMenu({menuId}:{menuId: string;}) {
   return (
     <IonMenu contentId={menuId} type="overlay" swipeGesture={false} className={context.imode ? "nodrop" : ""}>
       <IonContent>
-        <IonList>
+        <IonList style={{ paddingTop: "var(--ion-safe-area-top)" }}>
           <IonListHeader>{t("app.name")}</IonListHeader>
           {/* <IonNote>hi@ionicframework.com</IonNote> */}
           {appPages.map((appPage, index) => {
