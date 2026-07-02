@@ -55,7 +55,7 @@ export default function About() {
           >
             <img
               alt="Get it on Google Play"
-              src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+              src="https://sk5s.com/images/google-play.png"
               width="150px"
             />
           </a>
@@ -66,7 +66,7 @@ export default function About() {
           >
             <img
               alt="Get it on Google Play"
-              src="https://sk5s.cyou/countdate-landing/assets/img/IzzyOnDroid.png"
+              src="https://countdate.sk5s.com/assets/img/IzzyOnDroid.png"
               width="150px"
             />
           </a>
