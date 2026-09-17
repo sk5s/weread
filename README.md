@@ -45,7 +45,7 @@
 
 <div id="top"></div>
 
-[![sk5s site](https://sk5s.cyou/sk5s/img/sk5s-project-bar.png)](https://sk5s.com/)
+[![sk5s site](https://me.sk5s.org/img/sk5s-project-bar.png)](https://sk5s.com/)
 
 <!-- TABLE OF CONTENTS -->
 <details>
