@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react"
 import { DetailContext } from "../../pages/Detail/Context"
 import { IonButton, IonIcon, useIonAlert } from "@ionic/react"
 import { pencilSharp, swapHorizontalSharp, swapVerticalSharp, volumeHighSharp, stopCircleSharp } from "ionicons/icons"
-import { useHistory } from "react-router"
+import { useNavigate } from "react-router-dom"
 import UrlOpenConfirm from "../Button/UrlOpenConfirm"
 import HtmlContent from "./HtmlContent"
 import { SettingsContext } from "../../SettingsContext"
@@ -14,7 +14,7 @@ import { useViewerContext } from "../../contexts/ViewerContext"
 export default function Normal() {
   const globalSettings = useContext(SettingsContext)
   const article = useContext<any>(DetailContext)
-  const history = useHistory()
+  const navigate = useNavigate()
   const { t } = useTranslation()
   const [presentAlert] = useIonAlert()
   const { fontSize, saveFontSize, loadFontSize } = useViewerContext()
@@ -51,7 +51,7 @@ export default function Normal() {
               : null
           }
           <IonButton color="dark" fill="clear" onClick={() => {
-            history.push("/read/horizontal/" + article.id)
+            navigate("/read/horizontal/" + article.id)
           }}>
             <IonIcon slot="icon-only" icon={swapHorizontalSharp}></IonIcon>
           </IonButton>
@@ -59,7 +59,7 @@ export default function Normal() {
           {
             globalSettings.devMode ?
               <IonButton color="dark" fill="clear" onClick={() => {
-                history.push("/read/vertical/" + article.id)
+                navigate("/read/vertical/" + article.id)
               }}>
                 <IonIcon slot="icon-only" icon={swapVerticalSharp}></IonIcon>
               </IonButton>
@@ -67,7 +67,7 @@ export default function Normal() {
           }
 
           <IonButton color="dark" fill="clear" onClick={() => {
-            history.push("/edit/" + article.id)
+            navigate("/edit/" + article.id)
           }}>
             <IonIcon slot="icon-only" icon={pencilSharp}></IonIcon>
           </IonButton>

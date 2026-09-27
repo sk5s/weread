@@ -5,14 +5,14 @@ import { useContext, useEffect } from 'react';
 import { SettingsContext } from '../SettingsContext';
 import { IonFab, IonFabButton, IonIcon } from '@ionic/react';
 import { add } from 'ionicons/icons';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { SendIntent } from '@mindlib-capacitor/send-intent';
 import { validateUrl } from '../lib/utils';
 
 function Home() {
   const { t } = useTranslation()
   const context = useContext(SettingsContext)
-  const history = useHistory()
+  const navigate = useNavigate()
   useEffect(() => {
     // Receive Send Intent
     SendIntent.checkSendIntentReceived()
@@ -25,7 +25,7 @@ function Home() {
         if (result.url) {
           const resultUrl = decodeURIComponent(result.url);
           if (validateUrl(resultUrl)) {
-            history.push("/add?q=" + resultUrl);
+            navigate("/add?q=" + resultUrl);
           } else {
             alert(t("data.sendintent.unsupported"));
           }
@@ -37,7 +37,7 @@ function Home() {
     <GeneralPage title={t("app.name")} menuId="menu-home">
       <MainReadList list={context.defaultReadView} />
       <IonFab slot="fixed" vertical="bottom" horizontal="end">
-        <IonFabButton onClick={() => { history.push("/add") }} color="dark">
+        <IonFabButton onClick={() => { navigate("/add") }} color="dark">
           <IonIcon icon={add}></IonIcon>
         </IonFabButton>
       </IonFab>

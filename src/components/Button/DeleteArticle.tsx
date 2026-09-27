@@ -4,11 +4,11 @@ import key from "../../lib/storage.json"
 import { Preferences } from "@capacitor/preferences";
 import { Directory, Filesystem } from "@capacitor/filesystem";
 import { trigger } from "../../lib/Event";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 export default function DeleteArticle({id}:{id:string}) {
   const {t} = useTranslation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const removeArticle = async () => {
     let readData = []
     const { value } = await Preferences.get({ key:  key.read});
@@ -42,7 +42,7 @@ export default function DeleteArticle({id}:{id:string}) {
       value: content,
     });
     trigger("weread:listChange")
-    history.push("/home")
+    navigate("/home")
   };
   return (
     <IonButton color="dark" onClick={() => removeArticle()}>{t("data.edit.deleteArticle")}</IonButton>

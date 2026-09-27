@@ -1,4 +1,4 @@
-import { Redirect, Route } from 'react-router-dom';
+import { Navigate, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
@@ -114,34 +114,18 @@ function App() {
         <SettingsContext.Provider value={settings}>
           <MainMenu menuId="menu-main" />
           <IonRouterOutlet id='menu-main'>
-            <Route exact path="/home">
-              <Home />
-            </Route>
-            <Route exact path="/add">
-              <Add />
-            </Route>
+            <Route path="/home" element={<Home />} />
+            <Route path="/add" element={<Add />} />
             {/* settings */}
-            <Route exact path="/settings">
-              <Settings />
-            </Route>
-            <Route exact path="/data">
-              <Data />
-            </Route>
-            <Route exact path="/about">
-              <About />
-            </Route>
-            <Route exact path="/font">
-              <Font />
-            </Route>
-            <Route exact path="/speak">
-              <Speak />
-            </Route>
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/data" element={<Data />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/font" element={<Font />} />
+            <Route path="/speak" element={<Speak />} />
             {/* dynamic */}
-            <Route path="/read/:view/:id" component={Pages} />
-            <Route path="/edit/:articleId" component={Edit} />
-            <Route exact path="/">
-              <Redirect to="/home" />
-            </Route>
+            <Route path="/read/:view/:id" element={<Pages />} />
+            <Route path="/edit/:articleId" element={<Edit />} />
+            <Route path="/" element={<Navigate to="/home" replace />} />
           </IonRouterOutlet>
         </SettingsContext.Provider>
       </IonReactRouter>

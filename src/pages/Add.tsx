@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Preferences } from '@capacitor/preferences';
 import key from '../lib/storage.json'
 import { v4 as uuidv4 } from 'uuid';
-import { useHistory, useLocation, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Readability } from '@mozilla/readability';
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { on, trigger } from '../lib/Event';
@@ -16,7 +16,7 @@ import { validateUrl } from '../lib/utils';
 
 function Add() {
   const {t} = useTranslation()
-  const history = useHistory();
+  const navigate = useNavigate();
   let location = useLocation();
   const context = useContext(SettingsContext);
   const [presentAlert] = useIonAlert();
@@ -109,7 +109,7 @@ function Add() {
     clearForm()
     let prefcontent = JSON.stringify(readList);
     console.log(content)
-    history.push("/home");
+    navigate("/home");
     await Preferences.set({
       key: key.read,
       value: prefcontent,

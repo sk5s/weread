@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IonBadge, IonItem, IonList, IonRippleEffect, IonCard, IonCardContent, IonButton } from '@ionic/react';
 import { motion } from "motion/react"
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { on } from '../lib/Event';
 import { useLongPress } from 'use-long-press';
 import { SettingsContext } from '../SettingsContext';
@@ -13,7 +13,7 @@ import logo from "../../resources/icon.png"
 export default function MainReadList({list}) {
   const {t} = useTranslation()
   const context = useContext(SettingsContext)
-  const history = useHistory();
+  const navigate = useNavigate();
   let readData:any[] = []
   const checkData = async () => {
     const { value } = await Preferences.get({ key:  key.read});
@@ -33,7 +33,7 @@ export default function MainReadList({list}) {
   }, []);
   const bind = useLongPress((e:any) => {
     console.log('Long pressed! ',e.target.id.split("+")[1]);
-    history.push('/edit/'+e.target.id.split("+")[1])
+    navigate('/edit/'+e.target.id.split("+")[1])
   });
   return (
     <>
@@ -51,9 +51,9 @@ export default function MainReadList({list}) {
             >
               <IonItem id={"listItem+"+e.id} onClick={() => {
                 if (list === "horizontal"){
-                  history.push(`/read/horizontal/${e.id}`)
+                  navigate(`/read/horizontal/${e.id}`)
                 }else {
-                  history.push(`/read/normal/${e.id}`);
+                  navigate(`/read/normal/${e.id}`);
                 }
               }} {...bind()} className={`ion-activatable ripple-parent`}>
                 {

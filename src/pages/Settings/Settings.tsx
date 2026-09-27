@@ -6,14 +6,14 @@ import { SettingsContext } from "../../SettingsContext";
 import { Preferences } from "@capacitor/preferences";
 import key from "../../lib/storage.json"
 import { trigger } from "../../lib/Event";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import allLang from '../../i18n/all.json'
 import { Device, DeviceInfo } from "@capacitor/device";
 import { TextToSpeech } from "@capacitor-community/text-to-speech";
 
 export default function Settings() {
   const {t,i18n} = useTranslation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const context = useContext(SettingsContext)
   const [deviceInfo, setDeviceInfo] = useState<DeviceInfo>(null);
   const changeSetting = async (settingKey: string, settingValue: any) => {
@@ -195,28 +195,28 @@ export default function Settings() {
     if (!isAvailable) return null;
 
     return (
-      <IonItem detail={true} onClick={() => history.push("/speak")}>
+      <IonItem detail={true} onClick={() => navigate("/speak")}>
         <IonLabel>{t("pages.settings.speak.label")}</IonLabel>
       </IonItem>
     )
   }
   const DataPage = () => {
     return (
-      <IonItem detail={true} onClick={() => history.push("/data")}>
+      <IonItem detail={true} onClick={() => navigate("/data")}>
         <IonLabel>{t("pages.settings.data.label")}</IonLabel>
       </IonItem>
     )
   }
   const InfoPage = () => {
     return (
-      <IonItem detail={true} onClick={() => history.push("/about")}>
+      <IonItem detail={true} onClick={() => navigate("/about")}>
         <IonLabel>{t("pages.settings.about.label",{app: t("app.name")})}</IonLabel>
       </IonItem>
     )
   }
   const FontPage = () => {
     return (
-      <IonItem detail={true} onClick={() => history.push("/font")}>
+      <IonItem detail={true} onClick={() => navigate("/font")}>
         <IonLabel>{t("pages.settings.font.label")}</IonLabel>
       </IonItem>
     )

@@ -3,7 +3,7 @@ import { DetailContext } from "../../pages/Detail/Context";
 import { useTranslation } from "react-i18next";
 import { useIonAlert, useIonToast } from "@ionic/react";
 import { SettingsContext } from "../../SettingsContext";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { Clipboard } from "@capacitor/clipboard";
 
 import viewer from "react-mobile-image-viewer";
@@ -26,7 +26,7 @@ export default function HtmlContent({
   const { t } = useTranslation();
   const [presentAlert] = useIonAlert();
   const [presentToast] = useIonToast();
-  const history = useHistory();
+  const navigate = useNavigate();
   const globalSettings = useContext(SettingsContext);
 
   const updateATag = () => {
@@ -49,7 +49,7 @@ export default function HtmlContent({
           {
             text: t("pages.detail.confirm.addUrl"),
             handler: () => {
-              history.push("/add?q=" + e.href);
+              navigate("/add?q=" + e.href);
               setSomethingInDivClicked(false);
             },
           },
